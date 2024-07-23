@@ -1,4 +1,7 @@
 import React from 'react'
+import Login from './Login'
+import { Route, Routes } from 'react-router-dom'
+import Signup from './Signup'
 
 function Path() {
   return (
@@ -9,8 +12,7 @@ function Path() {
       <Route path='/' element={<Login/>}/>
 
       
-
-      <Route path='/signup' element={<Signup/>}/>
+     <Route path='/signup' element={<Signup/>}/>
   
     </Routes>
     </>
