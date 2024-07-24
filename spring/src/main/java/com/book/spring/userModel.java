@@ -6,9 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Entity
-@Table(name="user")
+@Document("user")
 public class userModel {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)

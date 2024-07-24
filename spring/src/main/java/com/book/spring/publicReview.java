@@ -5,9 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Entity
-@Table(name="publicReview")
+@Document("publicReview")
 public class publicReview {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
