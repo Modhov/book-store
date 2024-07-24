@@ -1,1 +1,10 @@
+.username {
+  padding-bottom: 20px;
+}
+.password {
+  padding-bottom: 20px;
+}
+.button {
+  display: inline-flex;
+}
 

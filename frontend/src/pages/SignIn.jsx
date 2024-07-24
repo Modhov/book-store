@@ -3,9 +3,12 @@ import "../styles/signin.css";
 
 function SignIn() {
   return (
-    <div class="login-main">
+    <div class="signin-main">
+      <div>
+        <h1>Sign-in</h1>
+      </div>
       <form>
-        <div class="login">
+        <div className="signin">
           <div className="username">
             <input type="text" placeholder="Username" />
           </div>
@@ -14,7 +17,7 @@ function SignIn() {
           </div>
           <div className="button">
             <div className="signup">
-              <a href="#/sign-up">don't have an account? sign up.</a>
+              <a href="#/sign-up">sign up</a>
             </div>
             <div className="signin">
               <button type="submit">Sign In</button>
