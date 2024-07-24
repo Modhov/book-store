@@ -1,10 +1,14 @@
 import React from "react";
-import "./login.css";
-function Login() {
+import "../styles/signin.css";
+
+function SignIn() {
   return (
-    <div class="login-main">
+    <div class="signin-main">
+      <div>
+        <h1>Sign-in</h1>
+      </div>
       <form>
-        <div class="login">
+        <div className="signin">
           <div className="username">
             <input type="text" placeholder="Username" />
           </div>
@@ -12,11 +16,11 @@ function Login() {
             <input type="password" placeholder="Password" />
           </div>
           <div className="button">
-            <div className="signin">
-              <button type="submit">signin</button>
-            </div>
             <div className="signup">
-              <button type="submit">signup</button>
+              <a href="#/sign-up">sign up</a>
+            </div>
+            <div className="signin">
+              <button type="submit">Sign In</button>
             </div>
           </div>
         </div>
@@ -25,4 +29,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignIn;

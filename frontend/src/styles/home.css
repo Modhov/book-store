@@ -1,0 +1,30 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 25px;
+  height: 10vh;
+  width: calc(100% - 50px);
+  position: absolute;
+  z-index: 3;
+}
+.herotext {
+  font-size: 100px;
+}
+.herotext2 {
+  font-family: "sans-serif";
+  padding-bottom: 20px;
+}
+/* .home {
+  width: 100vw;
+  height: 10vh;
+  justify-content: ;
+  align-items: center;
+} */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
