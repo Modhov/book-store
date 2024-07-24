@@ -3,27 +3,17 @@ import "../styles/signin.css";
 
 function SignIn() {
   return (
-    <div class="signin-main">
-      <div>
-        <h1>Sign-in</h1>
-      </div>
+    <div class="auth-container">
       <form>
-        <div className="signin">
-          <div className="username">
+        <fieldset>
+          <legend>Sign In</legend>
+          <div className="input-grid">
             <input type="text" placeholder="Username" />
-          </div>
-          <div className="password">
             <input type="password" placeholder="Password" />
+            <button type="submit">Sign In</button>
+            <a href="#/sign-up">don't have an account? sign up.</a>
           </div>
-          <div className="button">
-            <div className="signup">
-              <a href="#/sign-up">sign up</a>
-            </div>
-            <div className="signin">
-              <button type="submit">Sign In</button>
-            </div>
-          </div>
-        </div>
+        </fieldset>
       </form>
     </div>
   );
