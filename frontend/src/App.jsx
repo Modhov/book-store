@@ -6,7 +6,7 @@ import SignIn from "./pages/SignIn";
 import Signup from "./pages/Signup";
 import store from "./redux/store";
 import SellerForm from "./pages/SellerForm";
-import SellerHome from "./pages/SellereHome";
+import SellerHome from "./pages/SellerHome";
 import BookList from "./pages/BookList";
 
 
