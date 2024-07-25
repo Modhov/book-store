@@ -5,8 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import org.bson.types.Binary;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Entity
+@Document("img")
 public class Img {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

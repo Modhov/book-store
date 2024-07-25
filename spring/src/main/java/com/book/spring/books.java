@@ -7,28 +7,29 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Entity
-@Table(name="books")
+@Document("books")
 public class books {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
-	private publicReview publicReview;
+
 	private String author;
 	private String  name;
 	private String  description;
 	private Integer  price;
 	private Integer  stock;
 	private boolean  used;
-	private String  genre;
+	private List<String>  genre;
 	private Double  discount;
 	private String binding ;
 	private String publisher ;
 	private String edition ;
 	private String isbn;
 	List<publicReview>ratings;
-	List<String>languages;
+	private String languages;
 	List<String>free;
 
 	public String getId() {
@@ -39,13 +40,6 @@ public class books {
 		this.id = id;
 	}
 
-	public publicReview getPublicReview() {
-		return publicReview;
-	}
-
-	public void setPublicReview(publicReview publicReview) {
-		this.publicReview = publicReview;
-	}
 
 	public String getAuthor() {
 		return author;
@@ -95,13 +89,6 @@ public class books {
 		this.used = used;
 	}
 
-	public String getGenre() {
-		return genre;
-	}
-
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
 
 	public Double getDiscount() {
 		return discount;
@@ -151,13 +138,6 @@ public class books {
 		this.ratings = ratings;
 	}
 
-	public List<String> getLanguages() {
-		return languages;
-	}
-
-	public void setLanguages(List<String> languages) {
-		this.languages = languages;
-	}
 
 	public List<String> getFree() {
 		return free;
@@ -165,5 +145,21 @@ public class books {
 
 	public void setFree(List<String> free) {
 		this.free = free;
+	}
+
+	public List<String> getGenre() {
+		return genre;
+	}
+
+	public void setGenre(List<String> genre) {
+		this.genre = genre;
+	}
+
+	public String getLanguages() {
+		return languages;
+	}
+
+	public void setLanguages(String languages) {
+		this.languages = languages;
 	}
 }
