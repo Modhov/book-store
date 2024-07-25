@@ -7,6 +7,10 @@ class bookListService {
             data,
         )
     }
+
+    getBooks(page) {
+        return page
+    }
 }
 
 export default new bookListService();

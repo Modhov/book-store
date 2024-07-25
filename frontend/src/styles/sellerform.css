@@ -1,0 +1,14 @@
+.add-book {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+}
+
+.add-book input,
+.add-book select {
+    width: 80%;
+}
+
+.add-book button[type="submit"] {
+    grid-column: 1 / span 2;
+}

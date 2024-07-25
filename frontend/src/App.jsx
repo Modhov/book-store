@@ -7,8 +7,8 @@ import Signup from "./pages/Signup";
 import store from "./redux/store";
 import SellerForm from "./pages/SellerForm";
 import SellerHome from "./pages/SellereHome";
-import objects from "./pages/objects";
-import Objects from "./pages/objects";
+import BookList from "./pages/BookList";
+import GetBooksHook from "./hooks/getBooksHook";
 
 function App() {
   return (
@@ -20,8 +20,8 @@ function App() {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/add-book" element={<SellerForm />} />
-          <Route path="/user-objects" element={<Objects />} />
-          <Route path="/*" element={<Navigate to="/home" replace />} />
+          <Route path="/store" element={<BookList />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </HashRouter>
     </Provider>
