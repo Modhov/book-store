@@ -29,7 +29,7 @@ export default function Home() {
         <p className="herotext">BookBite</p>
         <p className="herotext2">Read. Review. Repeat.</p>
         
-        <button  onClick={() =>{window.location.href = "/#/user-objects";}}>Get started</button>
+        <button  onClick={() =>{window.location.href = "/#/store";}}>Get started</button>
       </div>
     </div>
   );

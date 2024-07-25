@@ -30,7 +30,7 @@ public class books {
 	private String isbn;
 	List<publicReview>ratings;
 	private String languages;
-	List<String>free;
+	
 
 	public String getId() {
 		return id;
@@ -139,13 +139,7 @@ public class books {
 	}
 
 
-	public List<String> getFree() {
-		return free;
-	}
-
-	public void setFree(List<String> free) {
-		this.free = free;
-	}
+	
 
 	public List<String> getGenre() {
 		return genre;
