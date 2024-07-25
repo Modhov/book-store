@@ -28,6 +28,7 @@ export default function Home() {
       <div className="hero">
         <p className="herotext">BookBite</p>
         <p className="herotext2">Read. Review. Repeat.</p>
+        
         <button>Get started</button>
       </div>
     </div>

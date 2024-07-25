@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import Signup from "./pages/Signup";
 import store from "./redux/store";
+import SellerForm from "./pages/SellerForm";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/seller-home" element={<Home />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<Signup />} />
+          <Route path="/add-book" element={<SellerForm />} />
           <Route path="/*" element={<Navigate to="/home" replace />} />
         </Routes>
       </HashRouter>

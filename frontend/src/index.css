@@ -13,14 +13,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body{
-    margin: 0;
+body {
+  margin: 0;
 }
 
 button {
   padding: 0.2rem 0.6rem;
   margin: 2px;
   font-size: 1rem;
+  border: none;
+  background-color: #cc3300;
 }
 
 .secondary-button {
