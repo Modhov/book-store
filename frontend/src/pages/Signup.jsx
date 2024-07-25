@@ -8,8 +8,15 @@ function Signup() {
         password: ""
     });
 
-    const onSubmit = (e) => {
+    const onSubmit = async(e) => {
         e.preventDefault();
+        if(data!=null){
+            await axios.post("http://localhost:8080/post-user",{data}).then((result) => {
+                console.log(result);
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
     }
     return (
         <div className='auth-container'>
