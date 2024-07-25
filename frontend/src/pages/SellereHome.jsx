@@ -1,10 +1,12 @@
 import React from "react";
 import "../styles/home.css";
-export default function Home() {
+export default function SellerHome() {
   return (
-    <div style={{
-        position: 'relative'
-    }}>
+    <div
+      style={{
+        position: "relative",
+      }}
+    >
       <nav className="navigation">
         <h2>BookBite</h2>
         <div>
@@ -27,9 +29,15 @@ export default function Home() {
       </nav>
       <div className="hero">
         <p className="herotext">BookBite</p>
-        <p className="herotext2">Read. Review. Repeat.</p>
-        
-        <button  onClick={() =>{window.location.href = "/#/user-objects";}}>Get started</button>
+        <p>Sell. Earn. Satisfy. Repeat</p>
+
+        <button
+          onClick={() => {
+            window.location.href = "/#/add-book";
+          }}
+        >
+          Get started
+        </button>
       </div>
     </div>
   );

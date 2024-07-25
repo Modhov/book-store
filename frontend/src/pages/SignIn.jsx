@@ -6,7 +6,7 @@ function SignIn() {
     <div class="auth-container">
       <form>
         <fieldset>
-          <legend>Sign In</legend>
+          <legend align="left">Sign In</legend>
           <div className="input-grid">
             <input type="text" placeholder="Username" />
             <input type="password" placeholder="Password" />
