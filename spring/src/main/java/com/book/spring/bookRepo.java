@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface bookRepo extends MongoRepository<books, String> {
 
 	@Transactional
-	@Query("{$or :[{author: ?0},{id: ?0},{name: ?0},{'genre': ?0},{'binding': ?0},{'publisher': ?0},{'isbn': ?0},{'languages': ?0}]}")
+	@Query("{$or :[{author: {$regex: ?0, $options: 'i'}},{id: {$regex: ?0, $options: 'i'}},{name: {$regex: ?0, $options: 'i'}},{'genre': {$regex: ?0, $options: 'i'}},{'binding': {$regex: ?0, $options: 'i'}},{'publisher': {$regex: ?0, $options: 'i'}},{'isbn': {$regex: ?0, $options: 'i'}}]}")
 	public List<books> searchBooks(String word);
 
 }
