@@ -9,13 +9,20 @@ export default function bookListReducer(state = initialState, action) {
         case 'ADD_BOOKS_SUCCESS':
             return {
                 ...state,
-                books: [...state.books, action.payload],
+                books: [...state.books, ...action.payload],
                 currentPage: state.currentPage + 1,
             }
         case 'LIMIT_REACHED':
             return {
                 ...state,
                 last: true,
+            }
+        case 'SEARCHED_BOOKS':
+            return {
+                ...state,
+                books: action.payload,
+                currentPage: 0,
+                last: false
             }
         default:
             return state

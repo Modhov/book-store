@@ -16,11 +16,12 @@ public class bookServ {
 		return "sucess";
 	}
 
-	public List<books> getPage(Pageable pg){
-			List<books>arr=  r.findAll(pg).toList();
-        return arr;
+	public List<books> getPage(Pageable pg) {
+		List<books> arr = r.findAll(pg).toList();
+		return arr;
 	}
-	public books put(String id,books b) {
+
+	public books put(String id, books b) {
 		b.setId(id);
 		r.deleteById(id);
 		r.save(b);
@@ -32,9 +33,9 @@ public class bookServ {
 		return "del sucess";
 	}
 
-	public List<books> filter(String word) {
-		List<books> a= r.filter(word);
-		if(a!=null)
+	public List<books> searchBooks(String word) {
+		List<books> a = r.searchBooks(word);
+		if (a != null)
 			return a;
 		else
 			return null;

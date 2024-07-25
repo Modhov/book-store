@@ -8,8 +8,17 @@ class bookListService {
         )
     }
 
-    getBooks(page) {
-        return page
+    getBooks(pgnum, attribute, order) {
+        return axios.get(API_URL + '/get-book-page/' + pgnum, {
+            params: {
+                attribute: attribute,
+                order: order
+            }
+        })
+    }
+
+    searchBooks(search) {
+        return axios.get(API_URL + '/search-book/' + search)
     }
 }
 

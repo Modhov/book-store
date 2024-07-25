@@ -10,17 +10,22 @@ export default function BookList() {
     dispatch(getBooks());
   }
   useEffect(() => {
-    getNext();
-  }, [])
+    console.log(selector)
+  }, [selector])
   return (
     <div>
-      {selector.books.map((book) => (
-        <div key={book.id}>
-          <h1>{book.name}</h1>
-          <p>{book.author}</p>
-        </div>
-      ))}
-      <button onClick={getNext} disabled={selector.last}>Get Books</button>
+      {selector.books.map((book) => {
+        return (
+          <div key={book.id}>
+            <h1>{book.name}</h1>
+            <p>{book.author}</p>
+          </div>
+        )
+      })}
+      {selector.last ?
+        <p>Reached End of list</p> :
+        <button onClick={getNext} disabled={selector.last}>Get Books</button>
+      }
     </div>
   );
 }
