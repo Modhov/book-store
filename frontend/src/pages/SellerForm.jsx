@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { postBook } from "../redux/actions/bookListAction";
-import useDispatch from "react-redux";
+import { useDispatch } from "react-redux";
+import "../styles/sellerform.css";
 
-export default function () {
+export default function SellerForm() {
   const [data, setData] = useState({
     author: "",
     name: "",
@@ -20,12 +21,28 @@ export default function () {
   });
   const dispatch = useDispatch();
   function handleSubmit(e) {
-    e.preventdefault();
+    e.preventDefault();
+    const genres = typeof data.genre === "string" ? data.genre.split(",") : [];
+    setData({ ...data, genre: genres });
     dispatch(postBook(data));
+    setData({
+      author: "",
+      name: "",
+      description: "",
+      price: 0,
+      stock: 0,
+      used: false,
+      genre: "",
+      discount: 0,
+      binding: "",
+      publisher: "",
+      edition: "",
+      isbn: "",
+      language: "",
+    })
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Add Book</h1>
+    <form className="add-book" onSubmit={handleSubmit}>
       <label>Author</label>
       <input
         type="text"
@@ -68,7 +85,7 @@ export default function () {
         value={data.used}
         onChange={(e) => setData({ ...data, used: e.target.checked })}
       />
-      <label>Genre</label>
+      <label>Genre<span>seperate genre by comma</span></label>
       <input
         type="text"
         value={data.genre}

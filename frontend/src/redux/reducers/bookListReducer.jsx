@@ -1,20 +1,21 @@
 const initialState = {
     books: [],
-    loading: false,
+    currentPage: 0,
+    last: false
 }
 
 export default function bookListReducer(state = initialState, action) {
     switch (action.type) {
-        case 'GET_BOOKS_REQUEST':
+        case 'ADD_BOOKS_SUCCESS':
             return {
                 ...state,
-                loading: true,
+                books: [...state.books, action.payload],
+                currentPage: state.currentPage + 1,
             }
-        case 'GET_BOOKS_SUCCESS':
+        case 'LIMIT_REACHED':
             return {
                 ...state,
-                books: action.payload,
-                loading: false,
+                last: true,
             }
         default:
             return state
