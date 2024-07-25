@@ -16,9 +16,9 @@ public class bookServ {
 		return "sucess";
 	}
 
-	public List<books> get(Pageable pg){
+	public List<books> getPage(Pageable pg){
 			List<books>arr=  r.findAll(pg).toList();
-		return arr;
+        return arr;
 	}
 	public books put(String id,books b) {
 		b.setId(id);
@@ -38,5 +38,9 @@ public class bookServ {
 			return a;
 		else
 			return null;
+	}
+
+	public List<books> getPage() {
+		return r.findAll();
 	}
 }

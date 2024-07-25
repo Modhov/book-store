@@ -17,11 +17,25 @@ public class bookController {
 	String post(@RequestBody books b) {
 		return s.post(b);
 	}
+	@GetMapping("/get-book-page/{pgnum}")
+	List<books>get(@PathVariable Integer pgnum ,@RequestBody String attributes,@RequestBody Boolean order){
+		if(attributes==null){
+			attributes="id";
+		}
+		Pageable pg;
+		if(order) {
+            pg= PageRequest.of(pgnum,9, Sort.by(attributes).ascending());
+        } else {
+            pg= PageRequest.of(pgnum,9, Sort.by(attributes).descending());
+        }
+		return s.getPage(pg);
+	}
+
 	@GetMapping("/get-book")
 	List<books>get(){
-		Pageable pg= PageRequest.of(0,9, Sort.by("id"));
-		return s.get(pg);
+		return s.getPage();
 	}
+
 	@PutMapping("/put-book/{id}")
 	books put(@PathVariable String id, @RequestBody books b) {
 		return s.put(id,b);
