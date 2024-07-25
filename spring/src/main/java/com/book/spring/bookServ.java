@@ -3,6 +3,7 @@ package com.book.spring;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,8 +16,9 @@ public class bookServ {
 		return "sucess";
 	}
 
-	public List<books> get() {
-		return r.findAll();
+	public List<books> get(Pageable pg){
+			List<books>arr=  r.findAll(pg).toList();
+		return arr;
 	}
 	public books put(String id,books b) {
 		b.setId(id);

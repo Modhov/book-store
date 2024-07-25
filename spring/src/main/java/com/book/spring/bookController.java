@@ -3,6 +3,9 @@ package com.book.spring;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,7 +19,8 @@ public class bookController {
 	}
 	@GetMapping("/get-book")
 	List<books>get(){
-		return s.get();
+		Pageable pg= PageRequest.of(0,9, Sort.by("id"));
+		return s.get(pg);
 	}
 	@PutMapping("/put-book/{id}")
 	books put(@PathVariable String id, @RequestBody books b) {
