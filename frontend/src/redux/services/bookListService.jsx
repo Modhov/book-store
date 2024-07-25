@@ -1,8 +1,11 @@
 import { API_URL } from '../store'
+import axios from 'axios'
 
 class bookListService {
-    getBookList() {
-        return axios.get(`${API_URL}/books`);
+    postBook(data) {
+        return axios.post(API_URL + '/post-book',
+            data,
+        )
     }
 }
 
