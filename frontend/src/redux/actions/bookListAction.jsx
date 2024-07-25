@@ -17,7 +17,6 @@ export const getBooks = (attribute = "id", order = true) => async (dispatch, get
             dispatch({ type: 'LIMIT_REACHED' });
             return;
         } else {
-            console.log(res.data)
             dispatch({ type: 'ADD_BOOKS_SUCCESS', payload: res.data });
         }
     } else {
@@ -25,7 +24,7 @@ export const getBooks = (attribute = "id", order = true) => async (dispatch, get
     }
 }
 
-const searchBooks = (search) => async (dispatch, getState) => {
+export const searchBooks = (search) => async (dispatch, getState) => {
     const res = await serv.searchBooks(search);
     if (res.status == 200) {
         dispatch({ type: 'SEARCHED_BOOKS', payload: res.data });
