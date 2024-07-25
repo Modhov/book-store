@@ -1,7 +1,8 @@
 const initialState = {
     books: [],
     currentPage: 0,
-    last: false
+    last: false,
+    searched: false,
 }
 
 export default function bookListReducer(state = initialState, action) {
@@ -22,7 +23,14 @@ export default function bookListReducer(state = initialState, action) {
                 ...state,
                 books: action.payload,
                 currentPage: 0,
-                last: false
+                last: false,
+                searched: true,
+            }
+        case 'CANCEL_SEARCH':
+            return {
+                ...state,
+                currentPage: 0,
+                searched: false,
             }
         default:
             return state
