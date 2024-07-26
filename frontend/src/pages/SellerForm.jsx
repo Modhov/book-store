@@ -62,7 +62,7 @@ export default function SellerForm() {
         required
       />
       <label>Description</label>
-      <input
+      <textarea
         type="text"
         value={data.description}
         onChange={(e) => setData({ ...data, description: e.target.value })}
@@ -73,6 +73,7 @@ export default function SellerForm() {
         type="number"
         value={data.price}
         onChange={(e) => setData({ ...data, price: e.target.value })}
+        min={1}
         required
       />
       <label>Stock</label>
