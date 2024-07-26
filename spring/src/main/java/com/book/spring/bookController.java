@@ -66,4 +66,17 @@ public class bookController {
 		return s.postReview(id,pr);
 	}
 
+	@GetMapping("/get-review/{id}")
+	List<publicReview> getReview(@PathVariable String id){
+		return s.getReview(id);
+	}
+
+
+	@DeleteMapping("/delete-review/{bookid}")
+	String deleteAllReview(@PathVariable String bookid) {
+		return s.deleteAllReview(bookid);
+	}
+
+
+
 }

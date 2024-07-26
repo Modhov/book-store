@@ -79,4 +79,15 @@ public class bookServ {
 	}
 
 
+	public List<publicReview> getReview(String id) {
+		books b= r.findById(id).orElseThrow(() -> new NoSuchElementException("Book not found with id: " + id));
+		return b.getRatings();
+	}
+
+	public String deleteAllReview(String bookid) {
+		books b= r.findById(bookid).orElseThrow(() -> new NoSuchElementException("Book not found with id: " + bookid));
+		b.ratings=null;
+		r.save(b);
+		return "sucess";
+	}
 }
