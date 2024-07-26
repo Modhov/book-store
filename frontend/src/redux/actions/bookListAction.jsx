@@ -18,6 +18,9 @@ export const getBooks = (attribute = "id", order = true) => async (dispatch, get
             return;
         } else {
             dispatch({ type: 'ADD_BOOKS_SUCCESS', payload: res.data });
+            if (res.data.length < 9) {
+                dispatch({ type: 'LIMIT_REACHED' });
+            }
         }
     } else {
         console.log(res);
@@ -28,6 +31,15 @@ export const searchBooks = (search) => async (dispatch, getState) => {
     const res = await serv.searchBooks(search);
     if (res.status == 200) {
         dispatch({ type: 'SEARCHED_BOOKS', payload: res.data });
+    } else {
+        console.log(res);
+    }
+}
+
+export const getGenres = () => async (dispatch, getState) => {
+    const res = await serv.getGenres();
+    if (res.status == 200) {
+        dispatch({ type: 'GENRES', payload: res.data });
     } else {
         console.log(res);
     }

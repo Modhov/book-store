@@ -8,11 +8,13 @@ import store from "./redux/store";
 import SellerForm from "./pages/SellerForm";
 import SellerHome from "./pages/SellerHome";
 import BookList from "./pages/BookList";
+import InitHook from "./hooks/InitHook";
 
 
 function App() {
   return (
     <Provider store={store}>
+      <InitHook />
       <HashRouter>
         <Routes>
           <Route index path="/home" element={<Home />} />

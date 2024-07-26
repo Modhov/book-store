@@ -14,6 +14,5 @@ public interface bookRepo extends MongoRepository<books, String> {
 	@Transactional
 	@Query("{$or :[{author: {$regex: ?0, $options: 'i'}},{id: {$regex: ?0, $options: 'i'}},{name: {$regex: ?0, $options: 'i'}},{'genre': {$regex: ?0, $options: 'i'}},{'binding': {$regex: ?0, $options: 'i'}},{'publisher': {$regex: ?0, $options: 'i'}},{'isbn': {$regex: ?0, $options: 'i'}}]}")
 	public List<books> searchBooks(String word);
-@Query("")
-	List<books> getbestseller();
+
 }

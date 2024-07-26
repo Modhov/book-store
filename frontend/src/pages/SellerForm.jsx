@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { postBook } from "../redux/actions/bookListAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../styles/sellerform.css";
 
 export default function SellerForm() {
+  const cur = ""
   const [data, setData] = useState({
     author: "",
     name: "",
@@ -11,7 +12,7 @@ export default function SellerForm() {
     price: 0,
     stock: 0,
     used: false,
-    genre: "",
+    genre: [],
     discount: 0,
     binding: "",
     publisher: "",
@@ -20,10 +21,13 @@ export default function SellerForm() {
     language: "",
   });
   const dispatch = useDispatch();
+  const genres = useSelector((state) => state.books).genres;
   function handleSubmit(e) {
     e.preventDefault();
-    const genres = typeof data.genre === "string" ? data.genre.split(",") : [];
-    setData({ ...data, genre: genres });
+    if (data.genre.length === 0) {
+      alert("Please add at least one genre");
+      return;
+    }
     dispatch(postBook(data));
     setData({
       author: "",
@@ -32,7 +36,7 @@ export default function SellerForm() {
       price: 0,
       stock: 0,
       used: false,
-      genre: "",
+      genre: [],
       discount: 0,
       binding: "",
       publisher: "",
@@ -85,13 +89,31 @@ export default function SellerForm() {
         value={data.used}
         onChange={(e) => setData({ ...data, used: e.target.checked })}
       />
-      <label>Genre<span>seperate genre by comma</span></label>
-      <input
-        type="text"
-        value={data.genre}
-        onChange={(e) => setData({ ...data, genre: e.target.value })}
-        required
-      />
+      <label>Genres</label>
+      <div>
+        {data.genre.map((genre) => (
+          <span className="genre" key={genre}>{genre}<span className="delete-genre" onClick={
+            () => setData({
+              ...data, genre: data.genre.filter((g) => g !== genre)
+            })
+          }>X</span></span>
+        ))}
+        <select
+          value={cur}
+          onChange={(e) => {
+            setData({
+              ...data, genre: [...data.genre, e.target.value]
+            })
+          }}
+        >
+          <option value="" disabled>Add Genre</option>
+          {genres.map((genre) => (
+            <option key={genre} value={genre}>
+              {genre}
+            </option>
+          ))}
+        </select>
+      </div>
       <label>Discount</label>
       <input
         type="number"

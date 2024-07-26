@@ -20,6 +20,10 @@ class bookListService {
     searchBooks(search) {
         return axios.get(API_URL + '/search-book/' + search)
     }
+
+    getGenres() {
+        return axios.get(API_URL + '/genres')
+    }
 }
 
 export default new bookListService();

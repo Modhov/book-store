@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBooks, searchBooks } from "../redux/actions/bookListAction";
+import '../styles/bookList.css';
 
 export default function BookList() {
   const dispatch = useDispatch();
@@ -20,24 +21,26 @@ export default function BookList() {
     getNext();
   }
   useEffect(() => {
-    console.log(selector)
-  }, [selector])
+    getNext();
+  }, [])
   return (
-    <div>
+    <div className="book-list-container">
       <div className="search">
         <input type="text" placeholder="Search Books" value={q} onChange={(e) => setQ(e.target.value)} />
         {selector.searched && <button onClick={handleCancel}>Cancel Search</button>}
         <button onClick={handleSearch}>Search</button>
       </div>
-      {selector.books.map((book) => {
-        return (
-          <div key={book.id}>
-            <img src="/src/assets/images.jpeg" />
-            <h1>{book.name}</h1>
-            <p>{book.author}</p>
-          </div>
-        )
-      })}
+      <div className="book-list">
+        {selector.books.map((book) => {
+          return (
+            <div key={book.id} className="book-list-item">
+              <img src="/src/assets/images.jpeg" />
+              <p className="book-item-name" aria-description={book.name}>{book.name}</p>
+              <p className="book-item-author">{book.author}</p>
+            </div>
+          )
+        })}
+      </div>
       {selector.last ?
         <p>Reached End of list</p> :
         <button onClick={getNext} disabled={selector.last}>Get Books</button>
