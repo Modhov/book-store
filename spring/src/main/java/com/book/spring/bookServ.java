@@ -1,10 +1,9 @@
 package com.book.spring;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +52,31 @@ public class bookServ {
 		return genrelist;
 	}
 
-	public List<books> getbestseller() {
-		return r.findAll().stream().limit(4).toList();
+	public List<books> getBybestseller() {
+		Pageable page= PageRequest.of(0,4);
+		List<books>b=r.getbestseller(page);
+
+			return b;
 	}
+
+
+	public books postReview(String id, publicReview pr) {
+		books b = r.findById(id).orElseThrow(() -> new NoSuchElementException("Book not found with id: " + id));
+//        List<publicReview> publicReviewList=b.getRatings();
+//		if(publicReviewList==null)
+//			publicReviewList=new ArrayList<>();
+//		publicReviewList.add(pr);
+//		b.setRatings(publicReviewList);
+
+		// i add above functionalities in book model
+		b.addRatings(pr);
+
+
+			r.save(b);
+
+			return b;
+
+	}
+
+
 }

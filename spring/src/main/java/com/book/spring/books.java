@@ -1,12 +1,9 @@
 package com.book.spring;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Entity
@@ -37,7 +34,7 @@ public class books {
 	public void setSold(Integer sold) {
 		this.sold = sold;
 	}
-
+	@OneToMany
 	List<publicReview>ratings;
 	private String languages;
 	
@@ -146,6 +143,11 @@ public class books {
 
 	public void setRatings(List<publicReview> ratings) {
 		this.ratings = ratings;
+	}
+	public void addRatings(publicReview pr) {
+		if (ratings==null)
+			ratings=new ArrayList<>();
+		this.ratings.add(pr);
 	}
 
 

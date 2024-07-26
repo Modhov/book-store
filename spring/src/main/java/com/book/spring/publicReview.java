@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.UUID;
+
 @Entity
 @Document("publicReview")
 public class publicReview {
@@ -39,6 +41,9 @@ public class publicReview {
 	}
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+	public publicReview() {
+		this.id = UUID.randomUUID().toString(); // Generate a unique ID
 	}
 	
 	

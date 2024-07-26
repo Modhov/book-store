@@ -58,7 +58,12 @@ public class bookController {
 
 	@GetMapping("/best-seller")
 	List<books>getbestseller(){
-		return s.getbestseller();
+		return s.getBybestseller();
+	}
+
+	@PostMapping("/post-review/{id}")
+	books postReview(@PathVariable String id,@RequestBody publicReview pr){
+		return s.postReview(id,pr);
 	}
 
 }
