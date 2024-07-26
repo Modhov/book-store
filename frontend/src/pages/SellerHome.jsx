@@ -8,7 +8,16 @@ export default function SellerHome() {
       }}
     >
       <nav className="navigation">
-        <h2>BookBite</h2>
+        <h2>
+          BookBite
+          <span class="material-symbols-outlined"
+            onClick={() => {
+              window.location.href = "/#/home";
+            }}
+          >
+            sell
+          </span>
+        </h2>
         <div>
           <button
             className="secondary-button"
@@ -29,7 +38,7 @@ export default function SellerHome() {
       </nav>
       <div className="hero">
         <p className="herotext">BookBite</p>
-        <p>Sell. Earn. Satisfy. Repeat</p>
+        <p className="herotext2">Sell. Earn. Satisfy. Repeat</p>
 
         <button
           onClick={() => {
