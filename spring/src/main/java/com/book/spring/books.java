@@ -28,6 +28,16 @@ public class books {
 	private String publisher ;
 	private String edition ;
 	private String isbn;
+	private Integer sold;
+
+	public Integer getSold() {
+		return sold;
+	}
+
+	public void setSold(Integer sold) {
+		this.sold = sold;
+	}
+
 	List<publicReview>ratings;
 	private String languages;
 	

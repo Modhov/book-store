@@ -1,5 +1,7 @@
 package com.book.spring;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +45,15 @@ public class bookServ {
 
 	public List<books> getPage() {
 		return r.findAll();
+	}
+
+	public List<String> getgenres() {
+		List<String> genrelist = Arrays.asList("Romance","Historical","Mystery","Comic","Philosophy","Thriller","Fiction","Non - fiction","Novel","Sci-fi","Mythology","Biography","Adventure","Crime","Psychology","Horror","Humor");
+
+		return genrelist;
+	}
+
+	public List<books> getbestseller() {
+		return r.findAll().stream().limit(4).toList();
 	}
 }

@@ -51,5 +51,14 @@ public class bookController {
 	List<books> searchBooks(@PathVariable String word) {
 		return s.searchBooks(word);
 	}
+	@GetMapping("/genres")
+	List<String>getgenres(){
+		return s.getgenres();
+	}
+
+	@GetMapping("/best-seller")
+	List<books>getbestseller(){
+		return s.getbestseller();
+	}
 
 }
