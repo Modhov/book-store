@@ -41,9 +41,9 @@ export default function BookList() {
           )
         })}
       </div>
-      {selector.last ?
+      {!selector.searched && (selector.last ?
         <p>Reached End of list</p> :
-        <button onClick={getNext} disabled={selector.last}>Get Books</button>
+        <button onClick={getNext} disabled={selector.last}>Get Books</button>)
       }
     </div>
   );

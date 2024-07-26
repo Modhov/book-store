@@ -25,9 +25,9 @@ public class bookController {
 		}
 		Pageable pg;
 		if (order) {
-			pg = PageRequest.of(pgnum, 9, Sort.by(attribute).ascending());
+			pg = PageRequest.of(pgnum, 6, Sort.by(attribute).ascending());
 		} else {
-			pg = PageRequest.of(pgnum, 9, Sort.by(attribute).descending());
+			pg = PageRequest.of(pgnum, 6, Sort.by(attribute).descending());
 		}
 		return s.getPage(pg);
 	}
