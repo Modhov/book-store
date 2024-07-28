@@ -37,7 +37,6 @@ public class books {
 	public void setSold(Integer sold) {
 		this.sold = sold;
 	}
-	@OneToMany
 	List<publicReview>ratings;
 	private String languages;
 	
