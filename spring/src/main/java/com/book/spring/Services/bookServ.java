@@ -1,7 +1,10 @@
-package com.book.spring;
+package com.book.spring.Services;
 
 import java.util.*;
 
+import com.book.spring.Models.books;
+import com.book.spring.Models.publicReview;
+import com.book.spring.Repos.bookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -86,8 +89,12 @@ public class bookServ {
 
 	public String deleteAllReview(String bookid) {
 		books b= r.findById(bookid).orElseThrow(() -> new NoSuchElementException("Book not found with id: " + bookid));
-		b.ratings=null;
+		b.setRatings(null);
 		r.save(b);
-		return "sucess";
+		return "success";
+	}
+
+	public List<books> filterByGenre(String word) {
+			return r.filterByGenre(word);
 	}
 }

@@ -1,7 +1,8 @@
-package com.book.spring;
+package com.book.spring.Repos;
 
 import java.util.List;
 
+import com.book.spring.Models.books;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.Query;
@@ -17,4 +18,6 @@ public interface bookRepo extends MongoRepository<books, String> {
 	public List<books> searchBooks(String word);
 	@Query(value ="{}", sort = "{ stock: -1 }")
 	List<books> getbestseller(Pageable page);
+	@Query("{genre: ?0}")
+	List<books> filterByGenre(String word);
 }

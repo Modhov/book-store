@@ -1,4 +1,4 @@
-package com.book.spring;
+package com.book.spring.Models;
 
 import jakarta.persistence.Entity;
 
@@ -41,6 +41,6 @@ public class userModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
+
+
 }

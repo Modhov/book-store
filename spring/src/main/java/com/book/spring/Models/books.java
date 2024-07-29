@@ -1,13 +1,11 @@
-package com.book.spring;
+package com.book.spring.Models;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.book.spring.Models.publicReview;
 import jakarta.persistence.*;
-import org.hibernate.sql.ast.tree.from.MappedByTableGroup;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 @Entity
 @Document("books")
@@ -38,8 +36,18 @@ public class books {
 		this.sold = sold;
 	}
 	List<publicReview>ratings;
+
+
+
+	List<String>imageids;
 	private String languages;
-	
+	public List<String> getImageids() {
+		return imageids;
+	}
+
+	public void setImageids(List<String> imageids) {
+		this.imageids = imageids;
+	}
 
 	public String getId() {
 		return id;

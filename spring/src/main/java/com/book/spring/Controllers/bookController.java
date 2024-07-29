@@ -1,12 +1,18 @@
-package com.book.spring;
+package com.book.spring.Controllers;
 
 import java.util.List;
 
+import com.book.spring.Models.books;
+import com.book.spring.Models.publicReview;
+import com.book.spring.Models.userModel;
+import com.book.spring.Services.userServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
+
+import com.book.spring.Services.bookServ;
 
 @RestController
 public class bookController {
@@ -77,6 +83,9 @@ public class bookController {
 		return s.deleteAllReview(bookid);
 	}
 
-
+	@GetMapping("/filter-genre/{word}")
+	List<books> filterByGenre(@PathVariable String word){
+		return s.filterByGenre(word);
+	}
 
 }
