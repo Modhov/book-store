@@ -8,6 +8,7 @@ import com.book.spring.Repos.bookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -96,5 +97,19 @@ public class bookServ {
 
 	public List<books> filterByGenre(String word) {
 			return r.filterByGenre(word);
+	}
+
+	public List<books> customGet(String sort, Boolean order, String genre) {
+		if(genre.equals("All") && order)
+			return r.findAll(Sort.by(sort).ascending());
+		else if(genre.equals("All"))
+			return r.findAll(Sort.by(sort).ascending());
+		else{
+			if(order){
+				return r.getBooksOfGenre(genre,Sort.by(sort).ascending());
+			}else{
+				return r.getBooksOfGenre(genre,Sort.by(sort).descending());
+			}
+		}
 	}
 }

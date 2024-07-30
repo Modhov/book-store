@@ -87,5 +87,8 @@ public class bookController {
 	List<books> filterByGenre(@PathVariable String word){
 		return s.filterByGenre(word);
 	}
-
+	@GetMapping("/custom-get-book")
+	List<books> customGet(@RequestParam String sort, @RequestParam Boolean order,@RequestParam String genre ){
+		return s.customGet(sort,order,genre);
+	}
 }

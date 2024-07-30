@@ -5,6 +5,7 @@ import java.util.List;
 import com.book.spring.Models.books;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.Query;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -20,4 +21,6 @@ public interface bookRepo extends MongoRepository<books, String> {
 	List<books> getbestseller(Pageable page);
 	@Query("{genre: ?0}")
 	List<books> filterByGenre(String word);
+	@Query("{ 'genre': ?0 }")
+	List<books> getBooksOfGenre(String genre, Sort sort);
 }
