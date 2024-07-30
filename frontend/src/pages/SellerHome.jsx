@@ -27,7 +27,7 @@ export default function SellerHome() {
           >
             sign-in
           </button>
-          <button
+          <button className="third-button"
             onClick={() => {
               window.location.href = "/#/sign-up";
             }}
@@ -40,10 +40,11 @@ export default function SellerHome() {
         <p className="herotext">BookBite</p>
         <p className="herotext2">Sell. Earn. Satisfy. Repeat</p>
 
-        <button
+        <button className="button-first"
           onClick={() => {
             window.location.href = "/#/add-book";
-          }}
+          }
+          }
         >
           Get started
         </button>

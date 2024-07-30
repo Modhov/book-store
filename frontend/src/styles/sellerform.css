@@ -3,14 +3,41 @@
     grid-template-columns: 1fr 1fr;
     justify-items: center;
     align-items: center;
+    height: 70vh;
+    width: 120vh;
+    background-color: black;
+    opacity: .8;
+    padding: 2rem;
+    border-radius: 2rem;
+
+    
 }
 
 .add-book input,
 .add-book select,
 .add-book textarea {
-    width: 80%;
+    border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  transition: border-color 0.3s, box-shadow 0.3s;
+   
 }
 
 .add-book button[type="submit"] {
     grid-column: 1 / span 2;
 }
+.add-book-body{
+height: 100vh;
+width: 100vw;
+justify-content: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+
+}
+.form__label{
+}
+

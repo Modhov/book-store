@@ -46,6 +46,8 @@ export default function SellerForm() {
     })
   }
   return (
+    <div className="add-book-body">
+
     <form className="add-book" onSubmit={handleSubmit}>
       <label>Author</label>
       <input
@@ -54,21 +56,21 @@ export default function SellerForm() {
         onChange={(e) => setData({ ...data, author: e.target.value })}
         required
       />
-      <label>Name</label>
+      <label className="form__label">Name</label>
       <input
         type="text"
         value={data.name}
         onChange={(e) => setData({ ...data, name: e.target.value })}
         required
       />
-      <label>Description</label>
+      <label className="form__label">Description</label>
       <textarea
         type="text"
         value={data.description}
         onChange={(e) => setData({ ...data, description: e.target.value })}
         required
       />
-      <label>Price</label>
+      <label className="form__label">Price</label>
       <input
         type="number"
         value={data.price}
@@ -76,7 +78,7 @@ export default function SellerForm() {
         min={1}
         required
       />
-      <label>Stock</label>
+      <label className="form__label">Stock</label>
       <input
         type="number"
         value={data.stock}
@@ -84,13 +86,13 @@ export default function SellerForm() {
         min={1}
         required
       />
-      <label>Used</label>
+      <label className="form__label">Used</label>
       <input
         type="checkbox"
         value={data.used}
         onChange={(e) => setData({ ...data, used: e.target.checked })}
       />
-      <label>Genres</label>
+      <label className="form__label">Genres</label>
       <div>
         {data.genre.map((genre) => (
           <span className="genre" key={genre}>{genre}<span className="delete-genre" onClick={
@@ -115,7 +117,7 @@ export default function SellerForm() {
           ))}
         </select>
       </div>
-      <label>Discount</label>
+      <label className="form__label">Discount</label>
       <input
         type="number"
         value={data.discount}
@@ -132,34 +134,35 @@ export default function SellerForm() {
         <option value="Hardcover">Hardcover</option>
         <option value="Paperback">Paperback</option>
       </select>
-      <label>Publisher</label>
+      <label className="form__label">Publisher</label>
       <input
         type="text"
         value={data.publisher}
         onChange={(e) => setData({ ...data, publisher: e.target.value })}
         required
       />
-      <label>Edition</label>
+      <label className="form__label">Edition</label>
       <input
         type="text"
         value={data.edition}
         onChange={(e) => setData({ ...data, edition: e.target.value })}
       />
-      <label>ISBN</label>
+      <label className="form__label">ISBN</label>
       <input
         type="text"
         value={data.isbn}
         onChange={(e) => setData({ ...data, isbn: e.target.value })}
         required
       />
-      <label>Language</label>
+      <label className="form__label">Language</label>
       <input
         type="text"
         value={data.language}
         onChange={(e) => setData({ ...data, language: e.target.value })}
         required
       />
-      <button type="submit">Add</button>
+      <button type="submit" className="secondary-button">Add</button>
     </form>
+    </div>
   );
 }

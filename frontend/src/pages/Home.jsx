@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div style={{
       position: 'relative'
-    }}>
+    }} className="body-home">
       <nav className="navigation">
         <h2>
           BookBite
@@ -26,7 +26,7 @@ export default function Home() {
           >
             sign-in
           </button>
-          <button
+          <button className="third-button"
             onClick={() => {
               window.location.href = "/#/sign-up";
             }}
@@ -39,7 +39,7 @@ export default function Home() {
         <p className="herotext">BookBite</p>
         <p className="herotext2">Read. Review. Repeat.</p>
 
-        <button onClick={() => { window.location.href = "/#/store"; }}>Get started</button>
+        <button onClick={() => { window.location.href = "/#/store"; } } className="button-first">Get started</button>
       </div>
       {/* <div className="books">
         <div className="book">

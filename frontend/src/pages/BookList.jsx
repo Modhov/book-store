@@ -25,16 +25,18 @@ export default function BookList() {
   }, [])
   return (
     <div className="book-list-container">
-      <div className="search">
-        <input type="text" placeholder="Search Books" value={q} onChange={(e) => setQ(e.target.value)} />
-        {selector.searched && <button onClick={handleCancel}>Cancel Search</button>}
-        <button onClick={handleSearch}>Search</button>
+      <div className="searkch">
+        <input className="seach-box-list" type="text" placeholder="Search Books" value={q} onChange={(e) => setQ(e.target.value)} />
+        {selector.searched && <button onClick={handleCancel} className="third-button">Cancel Search</button>}
+        <button onClick={handleSearch} className="secondary-button">Search</button>
       </div>
       <div className="book-list">
         {selector.books.map((book) => {
           return (
             <div key={book.id} className="book-list-item">
+              <div className="img-book-list">
               <img src="/src/assets/images.jpeg" />
+              </div>
               <p className="book-item-name" aria-description={book.name}>{book.name}</p>
               <p className="book-item-author">{book.author}</p>
             </div>

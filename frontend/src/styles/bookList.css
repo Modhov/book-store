@@ -28,6 +28,7 @@
     width: calc(250px - 2rem);
     height: calc(350px - 2rem);
     transition: all 0.3s;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .book-list-item:hover {
@@ -51,3 +52,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.img-book-list{
+    
+    
+}
+.seach-box-list{
+    
+}
+
+/* -------- */
+
+
+

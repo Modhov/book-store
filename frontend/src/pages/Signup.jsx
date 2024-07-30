@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import "../styles/signin.css";
+import axios from "axios";
 
 function Signup() {
   const [data, setData] = useState({
-    name: "",
+    user: "",
     email: "",
     password: "",
   });
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
+    axios.post("http://localhost:8080/post-user",data).then((result)=>{
+      console.log(result.data);
+    })
+
   };
   return (
     <div className="auth-container">
@@ -18,10 +23,10 @@ function Signup() {
           <legend align="left">Sign Up</legend>
           <div className="input-grid">
             <input
-              placeholder="userName"
+              placeholder="user name"
               type="text"
               onChange={(e) => {
-                setData({ ...data, name: e.target.value });
+                setData({ ...data, user: e.target.value });
               }}
             />
             <input
@@ -38,7 +43,7 @@ function Signup() {
                 setData({ ...data, password: e.target.value });
               }}
             />
-            <button type="submit">Sign Up</button>
+            <button type="submit" className="third-button">Sign Up</button>
             <a href="#/sign-in">already have an account? sign in.</a>
           </div>
         </fieldset>
