@@ -3,7 +3,6 @@ package com.book.spring.Models;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.book.spring.Models.publicReview;
 import jakarta.persistence.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -27,6 +26,8 @@ public class books {
 	private String edition ;
 	private String isbn;
 	private Integer sold;
+	private List<publicReview> ratings;
+	private List<String> imageIds;
 
 	public Integer getSold() {
 		return sold;
@@ -35,18 +36,14 @@ public class books {
 	public void setSold(Integer sold) {
 		this.sold = sold;
 	}
-	List<publicReview>ratings;
 
-
-
-	List<String>imageids;
 	private String languages;
-	public List<String> getImageids() {
-		return imageids;
+	public List<String> getImageIds() {
+		return imageIds;
 	}
 
-	public void setImageids(List<String> imageids) {
-		this.imageids = imageids;
+	public void setImageIds(List<String> imageIds) {
+		this.imageIds = imageIds;
 	}
 
 	public String getId() {

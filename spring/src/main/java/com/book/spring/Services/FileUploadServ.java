@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class FileUploadServ {
@@ -23,13 +25,19 @@ public class FileUploadServ {
 
     @Autowired
     private GridFsOperations operations;
-    public String addFile(MultipartFile uploadFile) throws IOException {
-        DBObject metadata=new BasicDBObject();
-        metadata.put("filesize", uploadFile.getSize()); // i add file size as extra column
+    public List<String> addFile(List<MultipartFile> uploadFile) throws IOException {
+        List<String>fileIdList=new ArrayList<>();
+        for(MultipartFile i:uploadFile){
+            DBObject metadata=new BasicDBObject();
+            metadata.put("filesize", i.getSize()); // i add file size as extra column
+            Object fileId=template.store(i.getInputStream(),i.getOriginalFilename(),i.getContentType(),metadata);
+            fileIdList.add(fileId.toString());
+        }
+        return fileIdList;
 
 
-        Object fileId=template.store(uploadFile.getInputStream(),uploadFile.getOriginalFilename(),uploadFile.getContentType(),metadata);
-        return fileId.toString();
+
+
     }
 
     public FileUpload downloadFile(String id) throws IOException {
