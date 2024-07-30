@@ -14,10 +14,10 @@
 }
 
 fieldset {
-    border-color: #fff;
     height: 100%;
     padding: 1rem;
     padding-bottom: 2rem;
+    box-shadow: 0 0 16px rgba(36, 36, 36, 0.1);
 }
 legend {
     font-size: 1.75rem;

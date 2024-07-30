@@ -14,6 +14,13 @@ export default function bookListReducer(state = initialState, action) {
                 books: [...state.books, ...action.payload],
                 currentPage: state.currentPage + 1,
             }
+        case "ALL_BOOKS":
+            return {
+                ...state,
+                books: action.payload,
+                currentPage: 0,
+                last: true,
+            }
         case 'LIMIT_REACHED':
             return {
                 ...state,

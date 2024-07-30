@@ -3,6 +3,7 @@ import { postBook } from "../redux/actions/bookListAction";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/sellerform.css";
 
+
 export default function SellerForm() {
   const cur = ""
   const [data, setData] = useState({
@@ -19,7 +20,9 @@ export default function SellerForm() {
     edition: "",
     isbn: "",
     language: "",
+    imageIds: [],
   });
+  const [imgFiles, setImgFiles] = useState([]);
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.books).genres;
   function handleSubmit(e) {
@@ -28,30 +31,53 @@ export default function SellerForm() {
       alert("Please add at least one genre");
       return;
     }
-    dispatch(postBook(data));
-    setData({
-      author: "",
-      name: "",
-      description: "",
-      price: 0,
-      stock: 0,
-      used: false,
-      genre: [],
-      discount: 0,
-      binding: "",
-      publisher: "",
-      edition: "",
-      isbn: "",
-      language: "",
-    })
+    if (!imgFiles) {
+      alert("Please select a file first!");
+      return;
+    }
+    const formData = new FormData();
+    for (let i = 0; i < imgFiles.length; i++) {
+      formData.append("file", imgFiles[i]);
+    }
+    dispatch(postBook(data, formData));
+    // setData({
+    //   author: "",
+    //   name: "",
+    //   description: "",
+    //   price: 0,
+    //   stock: 0,
+    //   used: false,
+    //   genre: [],
+    //   discount: 0,
+    //   binding: "",
+    //   publisher: "",
+    //   edition: "",
+    //   isbn: "",
+    //   language: "",
+    //   imageIds: [],
+    // })
   }
+  const onChange = (e) => {
+    setImgFiles([...imgFiles, ...e.target.files]);
+  };
+
+  const onDrop = (event) => {
+    event.preventDefault();
+    setImgFiles([...imgFiles, ...event.dataTransfer.files]);
+  };
+
+  const onDragOver = (event) => {
+    event.preventDefault();
+  };
   return (
     <form className="add-book" onSubmit={handleSubmit}>
+      <h1>Add Book</h1>
       <label>Author</label>
       <input
         type="text"
         value={data.author}
         onChange={(e) => setData({ ...data, author: e.target.value })}
+        placeholder="Author"
         required
       />
       <label>Name</label>
@@ -59,6 +85,7 @@ export default function SellerForm() {
         type="text"
         value={data.name}
         onChange={(e) => setData({ ...data, name: e.target.value })}
+        placeholder="Name"
         required
       />
       <label>Description</label>
@@ -66,6 +93,7 @@ export default function SellerForm() {
         type="text"
         value={data.description}
         onChange={(e) => setData({ ...data, description: e.target.value })}
+        placeholder="Description"
         required
       />
       <label>Price</label>
@@ -91,15 +119,51 @@ export default function SellerForm() {
         onChange={(e) => setData({ ...data, used: e.target.checked })}
       />
       <label>Genres</label>
-      <div>
-        {data.genre.map((genre) => (
-          <span className="genre" key={genre}>{genre}<span className="delete-genre" onClick={
-            () => setData({
-              ...data, genre: data.genre.filter((g) => g !== genre)
-            })
-          }>X</span></span>
-        ))}
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          flexDirection: "column",
+        }}
+      >
+        <div className="genres">
+          <div
+            style={{
+              width: "85%",
+              overflow: "scroll",
+              display: "flex",
+              justifyContent: "flex-start",
+              alignItems: "center",
+              flexWrap: "nowrap",
+              gap: "1rem"
+            }}
+          >
+            {data.genre.map((genre) => (
+              <span className="genre" key={genre}>{genre}</span>
+            ))}
+          </div>
+          {data.genre.length >= 1 &&
+            <span
+              className="backspace material-symbols-outlined"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                setData({
+                  ...data,
+                  genre: data.genre.slice(0, data.genre.length - 1),
+                });
+              }}
+            >
+              backspace
+            </span>
+          }
+        </div>
         <select
+          style={{
+            width: "85%"
+          }}
           value={cur}
           onChange={(e) => {
             setData({
@@ -129,6 +193,7 @@ export default function SellerForm() {
         onChange={(e) => setData({ ...data, binding: e.target.value })}
         required
       >
+        <option value="" disabled>Select Binding</option>
         <option value="Hardcover">Hardcover</option>
         <option value="Paperback">Paperback</option>
       </select>
@@ -137,6 +202,7 @@ export default function SellerForm() {
         type="text"
         value={data.publisher}
         onChange={(e) => setData({ ...data, publisher: e.target.value })}
+        placeholder="Publisher"
         required
       />
       <label>Edition</label>
@@ -144,12 +210,14 @@ export default function SellerForm() {
         type="text"
         value={data.edition}
         onChange={(e) => setData({ ...data, edition: e.target.value })}
+        placeholder="Edition"
       />
       <label>ISBN</label>
       <input
         type="text"
         value={data.isbn}
         onChange={(e) => setData({ ...data, isbn: e.target.value })}
+        placeholder="ISBN"
         required
       />
       <label>Language</label>
@@ -157,8 +225,31 @@ export default function SellerForm() {
         type="text"
         value={data.language}
         onChange={(e) => setData({ ...data, language: e.target.value })}
+        placeholder="Language"
         required
       />
+      <label>Upload images</label>
+      <div style={{
+        border: "1px solid black",
+        width: "100%",
+        height: "100px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        cursor: "pointer",
+        margin: "1rem 0"
+      }} onDrop={onDrop} onDragOver={onDragOver}>
+        <input
+          type="file"
+          accept="images/*"
+          onChange={onChange}
+          style={{ display: 'none' }}
+          id="fileInput"
+        />
+        <label htmlFor="fileInput">
+          {imgFiles.length > 0 ? (imgFiles.length == 1 ? imgFiles[0].name : imgFiles[0].name + ",...") : "Choose or drop a file"}
+        </label>
+      </div>
       <button type="submit">Add</button>
     </form>
   );

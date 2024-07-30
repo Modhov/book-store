@@ -8,6 +8,10 @@ class bookListService {
         )
     }
 
+    postImages(formData) {
+        return axios.post(API_URL + '/upload', formData)
+    }
+
     getBooks(pgnum, attribute, order) {
         return axios.get(API_URL + '/get-book-page/' + pgnum, {
             params: {
@@ -15,6 +19,18 @@ class bookListService {
                 order: order
             }
         })
+    }
+
+    getAllBooks(sort, genre, order) {
+        return axios.get(API_URL + '/get-book'
+            , {
+                params: {
+                    sort: sort,
+                    genre: genre,
+                    order: order
+                }
+            }
+        )
     }
 
     searchBooks(search) {

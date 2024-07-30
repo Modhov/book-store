@@ -18,28 +18,28 @@ function Signup() {
           <legend align="left">Sign Up</legend>
           <div className="input-grid">
             <input
-              placeholder="userName"
               type="text"
+              placeholder="Username"
               onChange={(e) => {
                 setData({ ...data, name: e.target.value });
               }}
             />
             <input
-              placeholder="email"
+              placeholder="Email"
               type="email"
               onChange={(e) => {
                 setData({ ...data, email: e.target.value });
               }}
             />
             <input
-              placeholder="password"
+              placeholder="Password"
               type="password"
               onChange={(e) => {
                 setData({ ...data, password: e.target.value });
               }}
             />
             <button type="submit">Sign Up</button>
-            <a href="#/sign-in">already have an account? sign in.</a>
+            <a href="#/sign-in">Already have an account? Sign In</a>
           </div>
         </fieldset>
       </form>

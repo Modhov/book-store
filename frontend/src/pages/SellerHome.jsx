@@ -10,8 +10,8 @@ export default function SellerHome() {
       <nav className="navigation">
         <h2>
           BookBite
-          <span class="material-symbols-outlined"
-            onClick={() => {
+          <span className="material-symbols-outlined"
+            onDoubleClick={() => {
               window.location.href = "/#/home";
             }}
           >
@@ -25,27 +25,36 @@ export default function SellerHome() {
               window.location.href = "/#/sign-in";
             }}
           >
-            sign-in
+            Sign In
           </button>
           <button
             onClick={() => {
               window.location.href = "/#/sign-up";
             }}
           >
-            sign-up
+            Sign Up
           </button>
         </div>
       </nav>
-      <div className="hero">
+      <div className="seller-hero">
         <p className="herotext">BookBite</p>
-        <p className="herotext2">Sell. Earn. Satisfy. Repeat</p>
+        <p className="herotext2">Sell. Earn. Satisfy. </p>
 
         <button
+          className="get-started"
           onClick={() => {
             window.location.href = "/#/add-book";
           }}
         >
           Get started
+          <span className="material-symbols-outlined"
+            style={{
+              position: "relative",
+              top: "6px",
+            }}
+          >
+            arrow_forward
+          </span>
         </button>
       </div>
     </div>

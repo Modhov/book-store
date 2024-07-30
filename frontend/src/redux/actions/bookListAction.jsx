@@ -1,37 +1,56 @@
 import bookListService from "../services/bookListService";
 const serv = bookListService;
 
-export const postBook = (data) => async (dispatch, getState) => {
+export const postBook = (data, formData) => async (dispatch, getState) => {
+  const imgRes = await serv.postImages(formData);
+  if (imgRes.status == 200) {
+    data.imageIds = imgRes.data;
+    console.log(imgRes.data)
+  } else {
+    console.log("Error uploading images");
+    console.log(imgRes);
+    return;
+  }
   const res = await serv.postBook(data);
   if (res.status == 200) {
     alert("Book added successfully");
   } else {
+    console.log("Error adding book");
     console.log(res);
   }
 };
 
+export const getAllBooks = (sort = "id", genre = "All", order = true) => async (dispatch, getState) => {
+  const res = await serv.getAllBooks(sort, genre, order);
+  if (res.status == 200) {
+    dispatch({ type: "ALL_BOOKS", payload: res.data });
+  } else {
+    console.log(res);
+  }
+}
+
 export const getBooks =
   (attribute = "id", order = true) =>
-  async (dispatch, getState) => {
-    const res = await serv.getBooks(
-      getState().books.currentPage,
-      attribute,
-      order
-    );
-    if (res.status == 200) {
-      if (res.data.length == 0) {
-        dispatch({ type: "LIMIT_REACHED" });
-        return;
-      } else {
-        dispatch({ type: "ADD_BOOKS_SUCCESS", payload: res.data });
-        if (res.data.length < 6) {
+    async (dispatch, getState) => {
+      const res = await serv.getBooks(
+        getState().books.currentPage,
+        attribute,
+        order
+      );
+      if (res.status == 200) {
+        if (res.data.length == 0) {
           dispatch({ type: "LIMIT_REACHED" });
+          return;
+        } else {
+          dispatch({ type: "ADD_BOOKS_SUCCESS", payload: res.data });
+          if (res.data.length < 6) {
+            dispatch({ type: "LIMIT_REACHED" });
+          }
         }
+      } else {
+        console.log(res);
       }
-    } else {
-      console.log(res);
-    }
-  };
+    };
 
 export const searchBooks = (search) => async (dispatch, getState) => {
   const res = await serv.searchBooks(search);
