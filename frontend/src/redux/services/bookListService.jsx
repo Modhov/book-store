@@ -22,12 +22,12 @@ class bookListService {
     }
 
     getAllBooks(sort, genre, order) {
-        return axios.get(API_URL + '/get-book'
+        return axios.get(API_URL + '/custom-get-book'
             , {
                 params: {
                     sort: sort,
-                    genre: genre,
-                    order: order
+                    order: order,
+                    genre: genre
                 }
             }
         )

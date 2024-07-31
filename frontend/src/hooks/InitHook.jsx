@@ -4,7 +4,7 @@ import { getAllBooks, getBooks, getGenres } from '../redux/actions/bookListActio
 
 export default function InitHook() {
     const dispatch = useDispatch();
-    const selector = useSelector(state => state).books
+    const selector = useSelector(state => state.books)
     useEffect(() => {
         dispatch(getGenres());
         // dispatch(getAllBooks());

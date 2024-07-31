@@ -8,7 +8,6 @@ export const postBook = (data, formData) => async (dispatch, getState) => {
     console.log(imgRes.data)
   } else {
     console.log("Error uploading images");
-    console.log(imgRes);
     return;
   }
   const res = await serv.postBook(data);
@@ -16,11 +15,11 @@ export const postBook = (data, formData) => async (dispatch, getState) => {
     alert("Book added successfully");
   } else {
     console.log("Error adding book");
-    console.log(res);
   }
 };
 
 export const getAllBooks = (sort = "id", genre = "All", order = true) => async (dispatch, getState) => {
+  dispatch({ type: "LOADING" })
   const res = await serv.getAllBooks(sort, genre, order);
   if (res.status == 200) {
     dispatch({ type: "ALL_BOOKS", payload: res.data });

@@ -45,7 +45,6 @@ export default function BookList() {
   }
 
   function handleGenreFilter(e) {
-    console.log(e.target)
     setSelectedGenre(e.target.innerText);
     dispatch(getAllBooks(sort, e.target.innerText, order));
   }
@@ -56,8 +55,8 @@ export default function BookList() {
       "Price (Low to High)": "price",
       "Price (High to Low)": "price",
       "Rating": "rating",
-      "Title (Ascending)": "title",
-      "Title (Descending)": "title"
+      "Title (Ascending)": "name",
+      "Title (Descending)": "name"
     };
 
     const sortOrders = {
@@ -99,8 +98,8 @@ export default function BookList() {
             );
           })}
         </div>
-        <select className="sort" onChange={handleSort}>
-          <option>Default</option>
+        <select defaultValue="Default" className="sort" onChange={handleSort}>
+          <option value="Default">Default</option>
           <option>Price (Low to High)</option>
           <option>Price (High to Low)</option>
           <option>Rating</option>
@@ -109,11 +108,17 @@ export default function BookList() {
         </select>
       </div>
       <div className="book-list">
-        {selector.books.map((book) => {
-          return (
-            <Card book={book} key={book.id} />
-          );
-        })}
+        {selector.searched ?
+          <span className="material-symbols-outlined loading">
+            progress_activity
+          </span>
+          :
+          selector.books.map((book) => {
+            return (
+              <Card book={book} key={book.id} />
+            );
+          })
+        }
       </div>
       <p>End of list.</p>
     </div>
