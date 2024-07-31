@@ -4,7 +4,7 @@ import { API_URL } from '../redux/store';
 
 const LazyCard = ({ book }) => {
     return (
-        <div className="book-list-item">
+        <div className="book-list-item" onClick={() => window.location.href = `/#/book/${book.id}`}>
             <img className="book-item-img" src={book.imageIds ? `${API_URL}/download/${book.imageIds[0]}` : "/src/assets/images.jpeg"} />
             <div className="book-item-desc">
                 <p className="book-item-name" aria-description={book.name}>{book.name}</p>

@@ -9,6 +9,7 @@ import SellerForm from "./pages/SellerForm";
 import SellerHome from "./pages/SellerHome";
 import BookList from "./pages/BookList";
 import InitHook from "./hooks/InitHook";
+import BookDetails from "./pages/BookDetails";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/add-book" element={<SellerForm />} />
           <Route path="/store" element={<BookList />} />
+          <Route path="/book/:id" element={<BookDetails />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </HashRouter>
