@@ -3,13 +3,16 @@ import "../styles/home.css";
 
 export default function Home() {
   return (
-    <div style={{
-      position: 'relative'
-    }}>
+    <div
+      style={{
+        position: "relative",
+      }}
+    >
       <nav className="navigation">
         <h2>
-          BookBite
-          <span class="material-symbols-outlined"
+          Book<span className="bite">Bite</span>
+          <span
+            class="material-symbols-outlined bag"
             onClick={() => {
               window.location.href = "/#/seller-home";
             }}
@@ -36,10 +39,18 @@ export default function Home() {
         </div>
       </nav>
       <div className="hero">
-        <p className="herotext">BookBite</p>
+        <p className="herotext">
+          Book<span className="bite">Bite</span>
+        </p>
         <p className="herotext2">Read. Review. Repeat.</p>
 
-        <button onClick={() => { window.location.href = "/#/store"; }}>Get started</button>
+        <button
+          onClick={() => {
+            window.location.href = "/#/store";
+          }}
+        >
+          Get started
+        </button>
       </div>
       {/* <div className="books">
         <div className="book">

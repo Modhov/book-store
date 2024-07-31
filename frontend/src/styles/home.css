@@ -1,88 +1,91 @@
 .navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 0px 25px;
-    height: 10vh;
-    width: calc(100% - 50px);
-    position: absolute;
-    z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0px 25px;
+  height: 10vh;
+  width: calc(100% - 50px);
+  position: absolute;
+  z-index: 3;
 }
-.navigation h2 span {
-    position: relative;
-    top: 3px;
-    margin: 0px 5px;
-    cursor: pointer;
+.navigation h2 .bag {
+  position: relative;
+  top: 3px;
+  margin: 0px 5px;
+  cursor: pointer;
 }
 .herotext {
-    font-size: 100px;
+  font-size: 100px;
 }
 .herotext2 {
-    font-family: "sans-serif";
-    padding-bottom: 20px;
+  font-family: "sans-serif";
+  padding-bottom: 20px;
 }
 
 .hero {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .books {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .book {
-    padding: 80px 20px;
-    border-radius: 10px;
-    margin: 10px;
-    width: 90px;
-    height: calc(90% - 160px);
-    align-content: center;
+  padding: 80px 20px;
+  border-radius: 10px;
+  margin: 10px;
+  width: 90px;
+  height: calc(90% - 160px);
+  align-content: center;
 
-    background: conic-gradient(
-            from -45deg at calc(100% / 3) calc(100% / 3),
-            #cb9c13 90deg,
-            #0000 0
-        ),
-        conic-gradient(
-            from -135deg at calc(100% / 3) calc(2 * 100% / 3),
-            #cb9c13 90deg,
-            #fec3b1 0 135deg,
-            #0000 0
-        ),
-        conic-gradient(
-            from 135deg at calc(2 * 100% / 3) calc(2 * 100% / 3),
-            #cb9c13 90deg,
-            #fec3b1 0 135deg,
-            #0000 0
-        ),
-        conic-gradient(
-                from 45deg at calc(2 * 100% / 3) calc(100% / 3),
-                #cb9c13 90deg,
-                #fec3b1 0 135deg,
-                #0000 0,
-                #cb9c13 0 225deg,
-                #fec3b1 0
-            )
-            rgba(0, 0, 0, 0.5);
-    background-size: 20px 20px;
-    background-repeat: repeat;
+  background: conic-gradient(
+      from -45deg at calc(100% / 3) calc(100% / 3),
+      #cb9c13 90deg,
+      #0000 0
+    ),
+    conic-gradient(
+      from -135deg at calc(100% / 3) calc(2 * 100% / 3),
+      #cb9c13 90deg,
+      #fec3b1 0 135deg,
+      #0000 0
+    ),
+    conic-gradient(
+      from 135deg at calc(2 * 100% / 3) calc(2 * 100% / 3),
+      #cb9c13 90deg,
+      #fec3b1 0 135deg,
+      #0000 0
+    ),
+    conic-gradient(
+        from 45deg at calc(2 * 100% / 3) calc(100% / 3),
+        #cb9c13 90deg,
+        #fec3b1 0 135deg,
+        #0000 0,
+        #cb9c13 0 225deg,
+        #fec3b1 0
+      )
+      rgba(0, 0, 0, 0.5);
+  background-size: 20px 20px;
+  background-repeat: repeat;
 }
 
 .book p {
-    writing-mode: vertical-rl;
-    height: 100%;
-    color: white;
-    font-size: 3rem;
-    font-family: sans-serif;
-    font-weight: bolder;
-    text-align: left;
+  writing-mode: vertical-rl;
+  height: 100%;
+  color: white;
+  font-size: 3rem;
+  font-family: sans-serif;
+  font-weight: bolder;
+  text-align: left;
+}
+.bite {
+  color: #f93a13;
 }
