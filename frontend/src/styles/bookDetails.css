@@ -5,24 +5,20 @@
     flex-direction: column;
 }
 .book-details {
-  max-width: 950px;
-  width: 100%;
+    max-width: 950px;
+    width: 100%;
 }
 .book-details__img {
-  display: block;
-  padding-left: 5%;
-  margin-left: right;
-}
-.navigation--no-z {
-  position: relative;
-  padding-bottom: 15vh;
+    display: block;
+    padding-left: 5%;
+    margin-left: right;
 }
 .book-details__name {
-  font-size: 1.5rem;
-  text-align: start;
-  padding-left: 5%;
+    font-size: 1.5rem;
+    text-align: start;
+    padding-left: 5%;
 }
 .book-details__price {
-  text-align: start;
-  padding-left: 5%;
+    text-align: start;
+    padding-left: 5%;
 }

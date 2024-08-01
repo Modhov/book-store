@@ -1,21 +1,3 @@
-.navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 0px 25px;
-    height: 10vh;
-    width: calc(100% - 50px);
-    position: absolute;
-    z-index: 3;
-}
-
-.navigation h2 span {
-    position: relative;
-    top: 3px;
-    margin: 0px 5px;
-    cursor: pointer;
-}
-
 .hero-container {
     display: flex;
     justify-content: center;
