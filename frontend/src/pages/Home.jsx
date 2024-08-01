@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/home.css";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
   const [B1, setB1] = useState(0);
@@ -39,35 +40,6 @@ export default function Home() {
     <div style={{
       position: 'relative'
     }}>
-      <nav className="navigation">
-        <h2>
-          BookBite
-          <span className="material-symbols-outlined"
-            onDoubleClick={() => {
-              window.location.href = "/#/seller-home";
-            }}
-          >
-            shopping_bag
-          </span>
-        </h2>
-        <div>
-          <button
-            className="secondary-button"
-            onClick={() => {
-              window.location.href = "/#/sign-in";
-            }}
-          >
-            Sign In
-          </button>
-          <button
-            onClick={() => {
-              window.location.href = "/#/sign-up";
-            }}
-          >
-            Sign Up
-          </button>
-        </div>
-      </nav>
       <div className="hero-container">
         <div className="hero">
           <p className="herotext">BookBite</p>
