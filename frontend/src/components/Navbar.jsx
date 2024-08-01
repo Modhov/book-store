@@ -22,7 +22,9 @@ export default function Navbar() {
     function handleSearch(e) {
         e.preventDefault();
         if (q === "") return;
-        dispatch(searchBooks(q));
+        dispatch(searchBooks(q)).then(() => {
+            window.location.href = "/#/store";
+        });
     }
 
     /**

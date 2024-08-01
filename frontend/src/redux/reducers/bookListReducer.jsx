@@ -3,7 +3,7 @@ const initialState = {
     genres: [],
     currentPage: 0,
     last: false,
-    searched: false,
+    loading: false,
 }
 
 export default function bookListReducer(state = initialState, action) {
@@ -12,7 +12,7 @@ export default function bookListReducer(state = initialState, action) {
             return {
                 ...state,
                 books: [],
-                searched: true,
+                loading: true,
             }
         case 'ADD_BOOKS_SUCCESS':
             return {
@@ -26,7 +26,7 @@ export default function bookListReducer(state = initialState, action) {
                 books: action.payload,
                 currentPage: 0,
                 last: true,
-                searched: false,
+                loading: false,
             }
         case 'LIMIT_REACHED':
             return {
@@ -39,13 +39,13 @@ export default function bookListReducer(state = initialState, action) {
                 books: action.payload,
                 currentPage: 0,
                 last: false,
-                searched: true,
+                loading: true,
             }
         case 'CANCEL_SEARCH':
             return {
                 ...state,
                 currentPage: 0,
-                searched: false,
+                loading: false,
             }
         case 'GENRES':
             return {
