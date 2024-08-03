@@ -16,7 +16,7 @@ public class bookServ {
 	@Autowired
 	private bookRepo r;
 
-	public String post(books b) {
+	public String add(books b) {
 		r.save(b);
 		return "sucess";
 	}
@@ -28,7 +28,7 @@ public class bookServ {
 
 	public books put(String id, books b) {
 		b.setId(id);
-		r.deleteById(id);
+		// save another value at same id equal to delete previous value
 		r.save(b);
 		return b;
 	}

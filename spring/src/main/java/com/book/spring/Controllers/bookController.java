@@ -21,7 +21,7 @@ public class bookController {
 
 	@PostMapping("/post-book")
 	String post(@RequestBody books b) {
-		return s.post(b);
+		return s.add(b);
 	}
 
 	@GetMapping("/get-book-page/{pgnum}")
