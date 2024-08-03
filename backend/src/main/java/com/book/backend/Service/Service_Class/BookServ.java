@@ -75,7 +75,7 @@ public class BookServ {
         return genrelist;
     }
 
-    //return the bestdeller books based on stock
+    //return the bestSeller books based on stock
 
     public List<Book_DTO> getByBestSeller() {
         Pageable page = PageRequest.of(0, 4);
@@ -122,6 +122,8 @@ public class BookServ {
 
     public String deleteImgById(String bookId, String imgId) {
         Book b=r.findByIdCustom(bookId);
-        List<String>imgList=
+        List<String>imgList=b.getImageIds();
+        imgList.remove(imgId);
+        return "Sucess";
     }
 }
