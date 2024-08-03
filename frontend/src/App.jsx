@@ -10,6 +10,7 @@ import SellerHome from "./pages/SellerHome";
 import BookList from "./pages/BookList";
 import InitHook from "./hooks/InitHook";
 import BookDetails from "./pages/BookDetails";
+import Navbar from "./components/Navbar";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     <Provider store={store}>
       <InitHook />
       <HashRouter>
+        <Navbar />
         <Routes>
           <Route index path="/home" element={<Home />} />
           <Route path="/seller-home" element={<SellerHome />} />
