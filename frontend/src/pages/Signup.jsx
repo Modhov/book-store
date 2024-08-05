@@ -1,15 +1,24 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signUp } from "../redux/actions/userAction";
 import "../styles/signin.css";
 
 function Signup() {
+  const dispatch = useDispatch();
   const [data, setData] = useState({
-    name: "",
+    user: "",
     email: "",
     password: "",
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(signUp(data));
+    setData({
+      user: "",
+      email: "",
+      password: ""
+    })
   };
   return (
     <div className="auth-container">
@@ -21,7 +30,7 @@ function Signup() {
               type="text"
               placeholder="Username"
               onChange={(e) => {
-                setData({ ...data, name: e.target.value });
+                setData({ ...data, user: e.target.value });
               }}
             />
             <input

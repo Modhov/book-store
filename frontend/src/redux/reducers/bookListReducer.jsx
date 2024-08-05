@@ -2,7 +2,7 @@ const initialState = {
     books: [],
     genres: [],
     currentPage: 0,
-    last: false,
+    limitReached: false,
     loading: false,
 }
 
@@ -14,31 +14,44 @@ export default function bookListReducer(state = initialState, action) {
                 books: [],
                 loading: true,
             }
-        case 'ADD_BOOKS_SUCCESS':
+        case 'ADD_BOOKS':
             return {
                 ...state,
                 books: [...state.books, ...action.payload],
                 currentPage: state.currentPage + 1,
+            }
+        case 'NEXT_BOOKS':
+            return {
+                ...state,
+                loading: true,
             }
         case "ALL_BOOKS":
             return {
                 ...state,
                 books: action.payload,
                 currentPage: 0,
-                last: true,
+                limitReached: true,
+                loading: false,
+            }
+        case "EMPTY_LIST":
+            return {
+                ...state,
+                books: [],
+                currentPage: 0,
+                limitReached: false,
                 loading: false,
             }
         case 'LIMIT_REACHED':
             return {
                 ...state,
-                last: true,
+                limitReached: true,
             }
         case 'SEARCHED_BOOKS':
             return {
                 ...state,
                 books: action.payload,
                 currentPage: 0,
-                last: false,
+                limitReached: false,
                 loading: true,
             }
         case 'CANCEL_SEARCH':

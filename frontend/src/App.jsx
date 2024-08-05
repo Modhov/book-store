@@ -11,6 +11,7 @@ import BookList from "./pages/BookList";
 import InitHook from "./hooks/InitHook";
 import BookDetails from "./pages/BookDetails";
 import Navbar from "./components/Navbar";
+import Profile from "./pages/Profile";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route index path="/home" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/seller-home" element={<SellerHome />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<Signup />} />

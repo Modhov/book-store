@@ -1,13 +1,15 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
-import { searchBooks, getAllBooks } from '../redux/actions/bookListAction';
-import { useDispatch } from 'react-redux';
+import { searchBooks, getNextBooks } from '../redux/actions/bookListAction';
+import { useDispatch, useSelector } from 'react-redux';
 import "../styles/navbar.css";
 
 export default function Navbar() {
     const loc = useLocation();
-    const no_z = ["/store", "/book/:id"];
-    const no_search = ["/home", "/seller-home", "/add-book"];
+    const selector = useSelector(state => state.user)
+    const no_z_list = ["store", "book", "profile"];
+    const no_z = no_z_list.some(path => loc.pathname.includes(path));
+    const no_search = ["/home", "/seller-home", "/add-book", "/profile"];
     const [q, setQ] = React.useState("");
     const dispatch = useDispatch();
 
@@ -33,12 +35,12 @@ export default function Navbar() {
     function handleCancel() {
         setQ("");
         dispatch({ type: "CANCEL_SEARCH" });
-        dispatch(getAllBooks());
+        dispatch(getNextBooks());
     }
 
     if (loc.pathname === "/sign-in" || loc.pathname === "/sign-up") return null;
     return (
-        <nav className={`navigation ${no_z.indexOf(loc.pathname) !== -1 && "navigation--no-z"}`}>
+        <nav className={`navigation ${no_z && "navigation--no-z"}`}>
             <h2 onClick={
                 () => {
                     window.location.href = "/#/home";
@@ -58,7 +60,8 @@ export default function Navbar() {
                     <span
                         className="material-symbols-outlined"
                         onDoubleClick={() => {
-                            window.location.href = "/#/seller-home";
+                            if (selector.userType == "admin")
+                                window.location.href = "/#/seller-home";
                         }}
                     >
                         home
@@ -82,23 +85,46 @@ export default function Navbar() {
                     </button>
                 </div>
             )}
-            <div>
-                <button
-                    className="secondary-button"
-                    onClick={() => {
-                        window.location.href = "/#/sign-in";
-                    }}
-                >
-                    Sign In
-                </button>
-                <button
-                    onClick={() => {
-                        window.location.href = "/#/sign-up";
-                    }}
-                >
-                    Sign Up
-                </button>
-            </div>
+            {selector.user ?
+                (
+                    <div>
+                        <button
+                            className='secondary-button'
+                            onClick={() => {
+                                window.location.href = "/#/profile";
+                            }}
+                        >
+                            {selector.user.user}
+                        </button>
+                        <span
+                            className='material-symbols-outlined'
+                            onClick={() => {
+                                dispatch({ type: "SET_USER", payload: null })
+                            }}
+                        >
+                            logout
+                        </span>
+                    </div>
+                )
+                :
+                (<div>
+                    <button
+                        className="secondary-button"
+                        onClick={() => {
+                            window.location.href = "/#/sign-in";
+                        }}
+                    >
+                        Sign In
+                    </button>
+                    <button
+                        onClick={() => {
+                            window.location.href = "/#/sign-up";
+                        }}
+                    >
+                        Sign Up
+                    </button>
+                </div>)
+            }
         </nav>
     )
 }

@@ -69,10 +69,16 @@ public class BookController {
     }
 
 
+    // gets a list of books from list of IDs
+    @PostMapping("/get-list")
+    ResponseEntity<List<Book_DTO>> getList(@RequestBody List<String> IDs){
+        return new ResponseEntity<>(s.getBookList(IDs),HttpStatus.OK);
+    }
+
     //sorting and filtering
     @GetMapping("/custom-get")
-    ResponseEntity<List<Book_DTO>> customGet(@RequestParam String sort, @RequestParam Boolean order,@RequestParam String genre ){
-        return new ResponseEntity<>(s.customGet(sort,order,genre),HttpStatus.OK);
+    ResponseEntity<List<Book_DTO>> customGet(@RequestParam Integer page,@RequestParam String sort, @RequestParam Boolean order,@RequestParam String genre ){
+        return new ResponseEntity<>(s.customGet(page,sort,order,genre),HttpStatus.OK);
     }
 
     // Add image is List

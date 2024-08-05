@@ -2,8 +2,8 @@ package com.book.backend.Repo;
 
 import com.book.backend.Models.Book;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,7 +20,7 @@ public interface BookRepo extends MongoRepository<Book,String> {
     @Query("{genre: ?0}")
     List<Book> filterByGenre(String word);
     @Query("{ 'genre': ?0 }")
-    List<Book> getBooksOfGenre(String genre, Sort sort);
+    List<Book> getBooksOfGenre(String genre, Pageable page);
 
     @Query("{'id': ?0}")
     Book findByIdCustom(String id);

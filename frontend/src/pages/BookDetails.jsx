@@ -1,53 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import "../styles/bookDetails.css";
+import { API_URL } from "../redux/store";
+import { addToWish } from "../redux/actions/userAction";
+
 export default function BookDetails() {
   const { id } = useParams();
-
+  const user = useSelector((state) => state.user.user)
   const book = useSelector((state) =>
     state.books.books.find((book) => book.id === id)
   );
+  const [wished, setWished] = useState(user && user.wishlist.filter(
+    (book) => book.id === id
+  ).length > 0);
+
+  const dispatch = useDispatch();
+  const wish = () => {
+    dispatch(addToWish(id));
+    setWished(!wished);
+  };
   if (book)
     return (
       <div className="book-details-container">
-        <nav className="navigation navigation--no-z">
-          <h2>
-            BookBite
-            <span
-              className="material-symbols-outlined"
-              onDoubleClick={() => {
-                window.location.href = "/#/seller-home";
-              }}
-            >
-              shopping_bag
-            </span>
-          </h2>
-          <div>
-            <button
-              className="secondary-button"
-              onClick={() => {
-                window.location.href = "/#/sign-in";
-              }}
-            >
-              Sign In
-            </button>
-            <button
-              onClick={() => {
-                window.location.href = "/#/sign-up";
-              }}
-            >
-              Sign Up
-            </button>
-          </div>
-        </nav>
         <div className="book-details">
           <div className="book-details__intro">
             <img
               className="book-details__img"
               src={
                 book.imageIds
-                  ? `${API_URL}/download/${book.imageIds[0]}`
+                  ? `${API_URL}/api/file/download/${book.imageIds[0]}`
                   : "/src/assets/images.jpeg"
               }
             />
@@ -57,13 +39,17 @@ export default function BookDetails() {
             })}
           </div>
           <div>
-            <p className="book-details__price">Price: ₹{book.price}</p>
-            <p
-              className="book-details__description"
-              aria-description={book.description}
-            >
-              Description:{book.description}
-            </p>
+            {user != null &&
+              (wished ?
+                <span onClick={wish} className="material-symbols-outlined">
+                  bookmark_added
+                </span>
+                : <span onClick={wish} className="material-symbols-outlined">
+                  bookmark_add
+                </span>
+              )
+
+            }
           </div>
         </div>
       </div>

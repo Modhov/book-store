@@ -18,11 +18,22 @@ export const postBook = (data, formData) => async (dispatch, getState) => {
   }
 };
 
-export const getAllBooks = (sort = "id", genre = "All", order = true) => async (dispatch, getState) => {
-  dispatch({ type: "LOADING" })
-  const res = await serv.getAllBooks(sort, genre, order);
+export const getNextBooks = (sort = "id", genre = "All", order = true, filter = false) => async (dispatch, getState) => {
+  if (filter)
+    dispatch({ type: "EMPTY_LIST" });
+  if (getState().books.limitReached) return;
+  dispatch({ type: "NEXT_BOOKS" })
+  const res = await serv.getAllBooks(getState().books.currentPage, sort, genre, order);
   if (res.status == 200) {
-    dispatch({ type: "ALL_BOOKS", payload: res.data });
+    if (res.data.length == 0) {
+      dispatch({ type: "LIMIT_REACHED" });
+      return;
+    } else {
+      dispatch({ type: "ADD_BOOKS", payload: res.data });
+      if (res.data.length < 9) { // page limit
+        dispatch({ type: "LIMIT_REACHED" });
+      }
+    }
   } else {
     console.log(res);
   }

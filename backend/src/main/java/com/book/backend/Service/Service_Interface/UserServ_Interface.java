@@ -9,4 +9,7 @@ public interface UserServ_Interface {
     List<User_DTO> getAllUser();
 
     String login(String user, String pass);
+
+    User_DTO getUser(String uId);
+    User_DTO wish(String uId, String bId);
 }

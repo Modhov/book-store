@@ -1,14 +1,13 @@
 package com.book.backend.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Set;
 
 @Entity
 @Document("User")
@@ -23,5 +22,5 @@ public class User {
 	private String user;
 	private String email;
 	private String password;
-
+	private Set<String> wishlist;
 }

@@ -17,55 +17,56 @@ import java.util.stream.Collectors;
 @Service
 public class BookServ {
     @Autowired
-   private BookRepo r;
-    //  # Crud Operation
+    private BookRepo r;
+    // # Crud Operation
 
-    //    ----->  Add one Book it will return Book
-    public Book_DTO add(Book_DTO book_dto){
-        Book b= BookMapper.convertToBook(book_dto);
+    // -----> Add one Book it will return Book
+    public Book_DTO add(Book_DTO book_dto) {
+        Book b = BookMapper.convertToBook(book_dto);
         r.save(b);
         return BookMapper.convertToBook_DTO(b);
     }
+
     // ----> get all books
-    public List<Book_DTO> getAll(){
-        List<Book> allBooks=r.findAll();
+    public List<Book_DTO> getAll() {
+        List<Book> allBooks = r.findAll();
         return allBooks.stream().map(BookMapper::convertToBook_DTO)
                 .collect(Collectors.toList());
     }
 
-    //  --->Update the book
+    // --->Update the book
 
     public Book_DTO updateBook(String id, Book_DTO book_dto) {
-        Book newBook=BookMapper.convertToBook(book_dto);
+        Book newBook = BookMapper.convertToBook(book_dto);
         newBook.setId(id);
         r.save(newBook);
-        // use the brain for avoiding create new storage area , use already available storage area book_dto
-        book_dto=BookMapper.convertToBook_DTO(newBook);
+        // use the brain for avoiding create new storage area , use already available
+        // storage area book_dto
+        book_dto = BookMapper.convertToBook_DTO(newBook);
         return book_dto;
     }
 
     // delete the book
 
     public Book_DTO deleteOneBook(String id) {
-        Book b=r.findByIdCustom(id);
+        Book b = r.findByIdCustom(id);
         r.deleteById(id);
         return BookMapper.convertToBook_DTO(b);
     }
 
+    // Search books based on word
 
-    //Search books based on word
-
-     public List<Book_DTO> searchBooks(String word) {
+    public List<Book_DTO> searchBooks(String word) {
         List<Book> a = r.searchBooks(word);
 
-        if (a != null){
+        if (a != null) {
             return a.stream().map(BookMapper::convertToBook_DTO)
-                    .collect(Collectors.toList());}
-        else
+                    .collect(Collectors.toList());
+        } else
             return null;
     }
 
-    //get the list of genres
+    // get the list of genres
 
     public List<String> getAllGenres() {
         List<String> genrelist = Arrays.asList("Romance", "Historical", "Mystery", "Comic", "Philosophy", "Thriller",
@@ -75,30 +76,28 @@ public class BookServ {
         return genrelist;
     }
 
-    //return the bestSeller books based on stock
+    // return the bestSeller books based on stock
 
     public List<Book_DTO> getByBestSeller() {
         Pageable page = PageRequest.of(0, 4);
         List<Book> books = r.getbestseller(page);
 
-
         return books.stream().map(BookMapper::convertToBook_DTO)
                 .collect(Collectors.toList());
     }
 
-
     // sorting and filtering get
-    public List<Book_DTO> customGet(String sort, Boolean order, String genre) {
+    public List<Book_DTO> customGet(Integer page, String sort, Boolean order, String genre) {
         List<Book> bookList;
         if (genre.equals("All") && order)
-            bookList= r.findAll(Sort.by(sort).ascending());
+            bookList = r.findAll(PageRequest.of(page, 9, Sort.by(sort).ascending())).toList();
         else if (genre.equals("All"))
-            bookList= r.findAll(Sort.by(sort).descending());
+            bookList = r.findAll(PageRequest.of(page, 9, Sort.by(sort).descending())).toList();
         else {
             if (order) {
-                bookList= r.getBooksOfGenre(genre, Sort.by(sort).ascending());
+                bookList = r.getBooksOfGenre(genre, PageRequest.of(page, 9, Sort.by(sort).ascending()));
             } else {
-                bookList= r.getBooksOfGenre(genre, Sort.by(sort).descending());
+                bookList = r.getBooksOfGenre(genre, PageRequest.of(page, 9, Sort.by(sort).descending()));
             }
         }
         return bookList.stream().map(BookMapper::convertToBook_DTO)
@@ -106,12 +105,11 @@ public class BookServ {
 
     }
 
-
     // Adding Images
 
-    public Book_DTO addImageIdList(List<String> newImgIds,String id) {
-        Book b=r.findByIdCustom(id);
-        List<String> imgList=b.getImageIds();
+    public Book_DTO addImageIdList(List<String> newImgIds, String id) {
+        Book b = r.findByIdCustom(id);
+        List<String> imgList = b.getImageIds();
         // insert new ids using one cmd
         imgList.addAll(newImgIds);
         b.setImageIds(imgList);
@@ -119,11 +117,14 @@ public class BookServ {
         return BookMapper.convertToBook_DTO(b);
     }
 
-
     public String deleteImgById(String bookId, String imgId) {
-        Book b=r.findByIdCustom(bookId);
-        List<String>imgList=b.getImageIds();
+        Book b = r.findByIdCustom(bookId);
+        List<String> imgList = b.getImageIds();
         imgList.remove(imgId);
         return "Sucess";
+    }
+
+    public List<Book_DTO> getBookList(List<String> IDs) {
+        return r.findAllById(IDs).stream().map(BookMapper::convertToBook_DTO).collect(Collectors.toList());
     }
 }

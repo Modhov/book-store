@@ -1,10 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllBooks,
-  getBooks,
-  searchBooks,
-} from "../redux/actions/bookListAction";
+import { getNextBooks } from "../redux/actions/bookListAction";
 import Card from "../components/Card";
 import "../styles/bookList.css";
 
@@ -23,7 +19,7 @@ export default function BookList() {
 
   function handleGenreFilter(e) {
     setSelectedGenre(e.target.innerText);
-    dispatch(getAllBooks(sort, e.target.innerText, order));
+    dispatch(getNextBooks(sort, e.target.innerText, order, true));
   }
 
   function handleSort(e) {
@@ -49,10 +45,11 @@ export default function BookList() {
     setOrder(sortOrders[e.target.value]);
 
     dispatch(
-      getAllBooks(
+      getNextBooks(
         sortOptions[e.target.value],
         genre,
-        sortOrders[e.target.value]
+        sortOrders[e.target.value],
+        true
       )
     );
   }
@@ -96,12 +93,18 @@ export default function BookList() {
             progress_activity
           </span>
         ) : (
-          selector.books.map((book) => {
-            return <Card book={book} key={book.id} />;
+          selector.books.map((book, index) => {
+            return <Card book={book} isMainList={!selector.limitReached && index % 9 == 8} key={book.id} />;
           })
         )}
       </div>
-      <p>End of list.</p>
+      {selector.limitReached ?
+        <p>End of list.</p>
+        :
+        <span className="material-symbols-outlined loading">
+          progress_activity
+        </span>
+      }
     </div>
   );
 }

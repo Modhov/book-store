@@ -3,13 +3,13 @@ import axios from 'axios'
 
 class bookListService {
     postBook(data) {
-        return axios.post(API_URL + '/post-book',
+        return axios.post(API_URL + '/api/book/add',
             data,
         )
     }
 
     postImages(formData) {
-        return axios.post(API_URL + '/upload', formData)
+        return axios.post(API_URL + '/api/file/upload', { "file": formData })
     }
 
     getBooks(pgnum, attribute, order) {
@@ -21,10 +21,11 @@ class bookListService {
         })
     }
 
-    getAllBooks(sort, genre, order) {
-        return axios.get(API_URL + '/custom-get-book'
+    getAllBooks(page, sort, genre, order) {
+        return axios.get(API_URL + '/api/book/custom-get'
             , {
                 params: {
+                    page: page,
                     sort: sort,
                     order: order,
                     genre: genre
@@ -34,11 +35,11 @@ class bookListService {
     }
 
     searchBooks(search) {
-        return axios.get(API_URL + '/search-book/' + search)
+        return axios.get(API_URL + '/api/book/search-book/' + search)
     }
 
     getGenres() {
-        return axios.get(API_URL + '/genres')
+        return axios.get(API_URL + '/api/book/genres')
     }
 }
 
