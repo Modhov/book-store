@@ -14,6 +14,7 @@ export default function Profile() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getWishlist());
+        console.log(selector)
     }, [])
     return (
         <div className='profile'>

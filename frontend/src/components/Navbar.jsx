@@ -87,9 +87,9 @@ export default function Navbar() {
             )}
             {selector.user ?
                 (
-                    <div>
+                    <div className='logged-in'>
                         <button
-                            className='secondary-button'
+                            className='secondary-button user-name'
                             onClick={() => {
                                 window.location.href = "/#/profile";
                             }}

@@ -231,8 +231,8 @@ export default function SellerForm() {
       <label>Upload images</label>
       <div style={{
         border: "1px solid black",
-        width: "100%",
-        height: "100px",
+        width: "80%",
+        height: "50px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -248,6 +248,11 @@ export default function SellerForm() {
         />
         <label htmlFor="fileInput">
           {imgFiles.length > 0 ? (imgFiles.length == 1 ? imgFiles[0].name : imgFiles[0].name + ",...") : "Choose or drop a file"}
+          {imgFiles.length > 0 &&
+            <button className="secondary-button" onClick={() => {
+              setImgFiles([]);
+            }}>x</button>
+          }
         </label>
       </div>
       <button type="submit">Add</button>

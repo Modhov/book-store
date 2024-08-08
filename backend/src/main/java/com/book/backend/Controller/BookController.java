@@ -33,6 +33,10 @@ public class BookController {
         return new ResponseEntity<List<Book_DTO>>(s.getAll(),HttpStatus.OK);
     }
 
+    @GetMapping("/get/{bId}")
+    public ResponseEntity<Book_DTO> getOne(@PathVariable String bId){
+        return new ResponseEntity<>(s.get(bId),HttpStatus.OK);
+    }
     // -----> update the book
 
     @PutMapping("/put/{id}")
@@ -61,8 +65,7 @@ public class BookController {
         return  new ResponseEntity<List<String>>(s.getAllGenres(),HttpStatus.OK);
     }
 
-    // return best seller based on stock
-
+    // return best seller based on stoc
     @GetMapping("/best-seller")
     ResponseEntity<List<Book_DTO>>getBestSeller(){
         return new ResponseEntity<List<Book_DTO>>(s.getByBestSeller(),HttpStatus.OK);

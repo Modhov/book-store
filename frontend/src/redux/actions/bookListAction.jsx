@@ -3,10 +3,11 @@ const serv = bookListService;
 
 export const postBook = (data, formData) => async (dispatch, getState) => {
   const imgRes = await serv.postImages(formData);
-  if (imgRes.status == 200) {
+  if (imgRes.status == 201) {
     data.imageIds = imgRes.data;
     console.log(imgRes.data)
   } else {
+    console.log(imgRes)
     console.log("Error uploading images");
     return;
   }

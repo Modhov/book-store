@@ -127,4 +127,11 @@ public class BookServ {
     public List<Book_DTO> getBookList(List<String> IDs) {
         return r.findAllById(IDs).stream().map(BookMapper::convertToBook_DTO).collect(Collectors.toList());
     }
+
+    public Book_DTO get(String bId) {
+        Book b = r.findById(bId).orElse(null);
+        if(b==null)
+            return null;
+        return BookMapper.convertToBook_DTO(b);
+    }
 }

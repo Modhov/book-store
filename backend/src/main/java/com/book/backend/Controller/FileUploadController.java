@@ -24,7 +24,7 @@ public class FileUploadController {
     private FileUploadServ s;
 
     @PostMapping("/upload")
-    public ResponseEntity<?> upload(@RequestParam("file") List<MultipartFile> file) throws IOException {
+    public ResponseEntity<?> upload(@RequestBody List<MultipartFile> file) throws IOException {
         return new ResponseEntity<>(s.addFile(file), HttpStatus.CREATED);
     }
 

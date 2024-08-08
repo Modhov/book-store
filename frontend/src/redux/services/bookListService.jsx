@@ -8,8 +8,8 @@ class bookListService {
         )
     }
 
-    postImages(formData) {
-        return axios.post(API_URL + '/api/file/upload', { "file": formData })
+    postImages(file) {
+        return axios.post(API_URL + '/api/file/upload', file)
     }
 
     getBooks(pgnum, attribute, order) {
@@ -22,6 +22,7 @@ class bookListService {
     }
 
     getAllBooks(page, sort, genre, order) {
+        console.log(page)
         return axios.get(API_URL + '/api/book/custom-get'
             , {
                 params: {
