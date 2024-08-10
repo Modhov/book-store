@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useEffect } from "react";
 import "../styles/signin.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../redux/actions/userAction";
 
 function SignIn() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const userDet = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(signIn(user, password));
-    window.location.href = "/#/home"
   }
+  useEffect(() => {
+    if (userDet) {
+      window.location.href = "#/home";
+    }
+  }, [userDet])
   return (
     <div className="auth-container">
       <form onSubmit={handleSubmit}>

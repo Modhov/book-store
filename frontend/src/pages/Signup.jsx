@@ -19,6 +19,7 @@ function Signup() {
       email: "",
       password: ""
     })
+    window.location.href = "#/sign-in";
   };
   return (
     <div className="auth-container">
