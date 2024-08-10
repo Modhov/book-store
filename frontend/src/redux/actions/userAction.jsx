@@ -27,10 +27,7 @@ export const signIn = (user, password) => async (dispatch, getState) => {
             }
         }
     } catch (error) {
-        if (res.status == 406)
-            dispatch({ type: "SET_ERROR", payload: res.data })
-        else
-            console.log(res)
+        dispatch({ type: "SET_ERROR", payload: error.response.data })
     }
 }
 
@@ -48,8 +45,8 @@ export const getWishlist = () => async (dispatch, getState) => {
     const IDs = getState().user.user.wishlist;
     try {
         const res = await serv.getWishlistBooks(IDs);
+        dispatch({ type: "SET_WISHLIST", payload: res.data });
     } catch (error) {
         console.log(error)
     }
-    dispatch({ type: "SET_WISHLIST", payload: res.data });
 }
