@@ -25,6 +25,9 @@ public class UserServ implements UserServ_Interface {
     public User_DTO addUser(User_DTO user_dto) {
         user_dto.setWishlist(Set.of());
         User user = UserMapper.convertToUser(user_dto);
+        // if any list or set field is null so initialize that
+        if(user.getWishlist()==null)
+            user.setWishlist(Set.of());
         User savedUser = r.save(user);
         return UserMapper.convertToUser_Dto(savedUser);
     }
@@ -39,10 +42,6 @@ public class UserServ implements UserServ_Interface {
         User u = r.login(user);
         if (u == null)
             return "User not found";
-        if(u.getWishlist()==null){
-            u.setWishlist(Set.of());
-            r.save(u);
-        }
         if (u.getPassword().equals(pass))
             return u.getId();
         else
