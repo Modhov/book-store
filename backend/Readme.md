@@ -17,6 +17,28 @@
 
 # What is?
 
+# Tip
+### 1
+        initailize the list and set during the post not in add funtionality to add one value into list
+        if(user.list==null)
+            user.setList(List.of());
+### 2
+        adding one value into list or set Dont need this
+                List<String>l=user.getList();
+                l.add("")
+                user.setList(l);
+                r.save(user);
+        use this one 
+                user.getList().add("");
+                r.save(user)
+
+        Note :
+                List or set have a error during if model is initialized without this type of data so 
+                we initialized these list or set during the post model method 
+
+                        if(user.list==null)
+                        user.setList(List.of());
+
 ### @AllArgsConstructor
     In a Spring Boot application, controllers often require dependencies like services, repositories, 
     or other components. The recommended way to inject these dependencies is through constructor injection. 

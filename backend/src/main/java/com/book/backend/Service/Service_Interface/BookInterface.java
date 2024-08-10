@@ -1,6 +1,7 @@
 package com.book.backend.Service.Service_Interface;
 
 import com.book.backend.Serializer_DTO.Book_DTO;
+import com.book.backend.Serializer_DTO.PublicReview_DTO;
 
 import java.util.List;
 
@@ -17,5 +18,9 @@ public interface BookInterface {
     public List<Book_DTO> customGet(Integer page,String sort, Boolean order, String genre);
     public Book_DTO addImageIdList(List<String> newImgIds,String id);
     public List<Book_DTO> getBookList(List<String> IDs);
+
+    public String buyBooks(List<String>ids);
+    public Book_DTO addOneReview(String bid, PublicReview_DTO reviewDto);
+    public List<Book_DTO> getReviewById(String id);
 
 }

@@ -98,4 +98,20 @@ public class BookController {
         return new ResponseEntity<>(s.deleteImgById(bookId,imgId),HttpStatus.OK);
     }
 
+    @PutMapping("/buy")
+    ResponseEntity<?>buyOneBook(@RequestParam List<String> ids){
+        return new ResponseEntity<>(s.buyBooks(ids),HttpStatus.OK);
+    }
+
+    // review
+    @PostMapping("/review/add")
+    ResponseEntity<Book_DTO>addOneReview(@RequestParam String bid,@RequestBody PublicReview_DTO review_dto){
+        return new ResponseEntity<>(s.addOneReview(bid,review_dto),HttpStatus.OK);
+    }
+    @GetMapping("/review/get-by-id")
+    ResponseEntity<List<Book_DTO>>getReviewById(@RequestParam String id){
+        return new ResponseEntity<>(s.getReviewById(id),HttpStatus.OK);
+    }
+
+
 }

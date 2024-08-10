@@ -47,4 +47,9 @@ public class UserController {
     public ResponseEntity<User_DTO> addToWishlist(@RequestParam String bid, @RequestParam String uid){
         return new ResponseEntity<>(s.wish(uid, bid),HttpStatus.OK);
     }
+
+    @PostMapping("/friend-request")
+    public ResponseEntity<User_DTO> addRequest(@RequestParam String uid,@RequestParam String newid){
+        return new ResponseEntity<>(s.addRequest(uid,newid),HttpStatus.OK);
+    }
 }

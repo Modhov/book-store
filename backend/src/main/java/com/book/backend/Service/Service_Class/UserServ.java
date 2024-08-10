@@ -1,18 +1,14 @@
 package com.book.backend.Service.Service_Class;
 
-import com.book.backend.Exception.ResourceNotFoundException;
 import com.book.backend.Mapper.UserMapper;
-import com.book.backend.Models.Book;
 import com.book.backend.Models.User;
-import com.book.backend.Repo.BookRepo;
 import com.book.backend.Repo.UserRepo;
 import com.book.backend.Serializer_DTO.User_DTO;
 import com.book.backend.Service.Service_Interface.UserServ_Interface;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,9 +21,12 @@ public class UserServ implements UserServ_Interface {
     public User_DTO addUser(User_DTO user_dto) {
         user_dto.setWishlist(Set.of());
         User user = UserMapper.convertToUser(user_dto);
-        // if any list or set field is null so initialize that
+        if(user.getFriendrequest()==null)
+            user.setFriendrequest(Set.of());
         if(user.getWishlist()==null)
             user.setWishlist(Set.of());
+        if(user.getFriendlist()==null)
+            user.setFriendlist(Set.of());
         User savedUser = r.save(user);
         return UserMapper.convertToUser_Dto(savedUser);
     }
@@ -66,6 +65,16 @@ public class UserServ implements UserServ_Interface {
             u.getWishlist().add(bId);
             r.save(u);
         }
+        return UserMapper.convertToUser_Dto(u);
+    }
+    public User_DTO addRequest(String uid, String newid){
+        User u=r.findById(uid).orElse(null);
+        if(u==null){
+            return null;
+        }
+        // confidence is because of each adding one user i will set into empty list or set so if any column is null it will initialized so no null
+        u.getFriendrequest().add(newid);
+        r.save(u);
         return UserMapper.convertToUser_Dto(u);
     }
 }

@@ -20,7 +20,9 @@ public class UserMapper {
                 user.getUser(),
                 user.getEmail(),
                 null,
-                user.getWishlist()
+                user.getWishlist(),
+                user.getFriendlist(),
+                user.getFriendrequest()
         );
     }
 
@@ -30,7 +32,9 @@ public class UserMapper {
                 user_dto.getUser(),
                 user_dto.getEmail(),
                 user_dto.getPassword(),
-                user_dto.getWishlist()
+                user_dto.getWishlist(),
+                user_dto.getFriendlist(),
+                user_dto.getFriendrequest()
         );
         return user;
     }

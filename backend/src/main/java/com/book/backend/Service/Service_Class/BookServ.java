@@ -1,15 +1,19 @@
 package com.book.backend.Service.Service_Class;
 
 import com.book.backend.Mapper.BookMapper;
+import com.book.backend.Mapper.PublicReviewMapper;
 import com.book.backend.Models.Book;
+import com.book.backend.Models.PublicReview;
 import com.book.backend.Repo.BookRepo;
 import com.book.backend.Serializer_DTO.Book_DTO;
+import com.book.backend.Serializer_DTO.PublicReview_DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +27,9 @@ public class BookServ {
     // -----> Add one Book it will return Book
     public Book_DTO add(Book_DTO book_dto) {
         Book b = BookMapper.convertToBook(book_dto);
+        if(b.getImageIds()==null){
+            b.setImageIds(List.of()); // it will intialize the image
+        }
         r.save(b);
         return BookMapper.convertToBook_DTO(b);
     }
@@ -40,10 +47,7 @@ public class BookServ {
         Book newBook = BookMapper.convertToBook(book_dto);
         newBook.setId(id);
         r.save(newBook);
-        // use the brain for avoiding create new storage area , use already available
-        // storage area book_dto
-        book_dto = BookMapper.convertToBook_DTO(newBook);
-        return book_dto;
+        return BookMapper.convertToBook_DTO(newBook);
     }
 
     // delete the book
@@ -109,10 +113,10 @@ public class BookServ {
 
     public Book_DTO addImageIdList(List<String> newImgIds, String id) {
         Book b = r.findByIdCustom(id);
-        List<String> imgList = b.getImageIds();
+       // b.getImgIds().add() it will add the values in book model
         // insert new ids using one cmd
-        imgList.addAll(newImgIds);
-        b.setImageIds(imgList);
+        b.getImageIds().addAll(newImgIds);
+        // so we reduce this step b.setImageIds(imgList);
         r.save(b);
         return BookMapper.convertToBook_DTO(b);
     }
@@ -133,5 +137,33 @@ public class BookServ {
         if(b==null)
             return null;
         return BookMapper.convertToBook_DTO(b);
+    }
+    public String buyBooks(List<String>ids){
+        for(String i:ids){
+            Book b=r.findByIdCustom(i);
+            System.out.println(b.getSold());
+            b.setSold(b.getSold()+1);
+
+        }
+        return "Sucess";
+    }
+
+    public Book_DTO addOneReview(String bid, PublicReview_DTO reviewDto) {
+        Book b=r.findByIdCustom(bid);
+        if(b.getRatings()==null)
+            b.setRatings(new ArrayList<>());
+        b.getRatings().add(PublicReviewMapper.convertToPublicReview(reviewDto));
+
+        r.save(b);
+        return BookMapper.convertToBook_DTO(b);
+
+
+    }
+
+    public List<Book_DTO> getReviewById(String id) {
+        List<Book>pr=r.getAllReviewById(id);
+        return pr.stream().map(BookMapper::convertToBook_DTO)
+                .collect(Collectors.toList());
+
     }
 }

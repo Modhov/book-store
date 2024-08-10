@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -18,4 +19,8 @@ public class User_DTO {
     private String email;
     private String password;
     private Set<String> wishlist;
+    private Set<String>friendlist;
+    private Set<String>friendrequest;
+
+
 }

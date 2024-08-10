@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,4 +24,7 @@ public class User {
 	private String email;
 	private String password;
 	private Set<String> wishlist;
+	private Set<String>friendlist;
+	private Set<String>friendrequest;
+
 }

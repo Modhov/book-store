@@ -1,7 +1,6 @@
 package com.book.backend.Service.Service_Interface;
 
 import com.book.backend.Serializer_DTO.User_DTO;
-import org.mapstruct.Mapper;
 
 import java.util.List;
 public interface UserServ_Interface {
@@ -12,4 +11,6 @@ public interface UserServ_Interface {
 
     User_DTO getUser(String uId);
     User_DTO wish(String uId, String bId);
+
+    User_DTO addRequest(String uid, String newid);
 }

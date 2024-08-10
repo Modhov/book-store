@@ -21,6 +21,7 @@ public class PublicReview {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
+    private String userid;
     private String name;
     private Integer stars;
     private String comment;
