@@ -119,8 +119,8 @@ public class BookServ {
 
     public String deleteImgById(String bookId, String imgId) {
         Book b = r.findByIdCustom(bookId);
-        List<String> imgList = b.getImageIds();
-        imgList.remove(imgId);
+        b.getImageIds().remove(imgId);
+        r.save(b);
         return "Sucess";
     }
 
