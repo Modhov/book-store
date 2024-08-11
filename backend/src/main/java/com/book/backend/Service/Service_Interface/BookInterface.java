@@ -24,5 +24,5 @@ public interface BookInterface {
     public Book_DTO get(String bId);
     public String buyBooks(List<String>ids);
 
-    void addOneReview(String id, String bookid);
+    void addOneReview(String id, String bookid,Double star);
 }

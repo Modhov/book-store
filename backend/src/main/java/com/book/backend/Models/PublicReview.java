@@ -26,7 +26,7 @@ public class PublicReview {
     private String userid;
     private String bookid;
     private String name;
-    private Integer stars;
+    private Double stars;
     private String comment;
 
 }

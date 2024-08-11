@@ -27,7 +27,7 @@ public class Book_DTO {
     private String edition ;
     private String isbn;
     private Integer sold;
-    private Integer avg;
+    private Double avg;
     private List<String> reviewIds;
     private List<String> imageIds;
     private String language;

@@ -149,7 +149,7 @@ public class BookServ implements BookInterface{
         }
         return "Sucess";
     }
-    public void addOneReview(String reviewId, String bookId){
+    public void addOneReview(String reviewId, String bookId,Double newstar){
         Book b=r.findByIdCustom(bookId);
         if(b==null){
             return;
@@ -158,8 +158,17 @@ public class BookServ implements BookInterface{
            b.setReviewIds(new ArrayList<>());
         }
         b.getReviewIds().add(reviewId);
+        if(b.getAvg()==null){
+            b.setAvg(newstar);
+        }
+        else{
+            Double Totalstars=(b.getAvg()*(b.getReviewIds().size()-1))+(newstar);
+
+        System.out.println(b.getAvg());
+            b.setAvg(Totalstars/b.getReviewIds().size());
+
+        }
         r.save(b);
-        System.out.println(b.getReviewIds());
     }
 
 
