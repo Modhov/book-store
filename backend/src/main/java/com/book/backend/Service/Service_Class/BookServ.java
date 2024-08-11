@@ -7,6 +7,7 @@ import com.book.backend.Models.PublicReview;
 import com.book.backend.Repo.BookRepo;
 import com.book.backend.Serializer_DTO.Book_DTO;
 import com.book.backend.Serializer_DTO.PublicReview_DTO;
+import com.book.backend.Service.Service_Interface.BookInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class BookServ {
+public class BookServ implements BookInterface{
     @Autowired
     private BookRepo r;
     // # Crud Operation
@@ -30,7 +31,14 @@ public class BookServ {
         if(b.getImageIds()==null){
             b.setImageIds(List.of()); // it will intialize the image
         }
+        if(b.getReviewIds()==null){
+            b.setReviewIds(List.of());
+        }
         r.save(b);
+        return BookMapper.convertToBook_DTO(b);
+    }
+    public Book_DTO get(String id){
+        Book b=r.findByIdCustom(id);
         return BookMapper.convertToBook_DTO(b);
     }
 
@@ -132,12 +140,6 @@ public class BookServ {
         return r.findAllById(IDs).stream().map(BookMapper::convertToBook_DTO).collect(Collectors.toList());
     }
 
-    public Book_DTO get(String bId) {
-        Book b = r.findById(bId).orElse(null);
-        if(b==null)
-            return null;
-        return BookMapper.convertToBook_DTO(b);
-    }
     public String buyBooks(List<String>ids){
         for(String i:ids){
             Book b=r.findByIdCustom(i);
@@ -147,23 +149,18 @@ public class BookServ {
         }
         return "Sucess";
     }
-
-    public Book_DTO addOneReview(String bid, PublicReview_DTO reviewDto) {
-        Book b=r.findByIdCustom(bid);
-        if(b.getRatings()==null)
-            b.setRatings(new ArrayList<>());
-        b.getRatings().add(PublicReviewMapper.convertToPublicReview(reviewDto));
-
+    public void addOneReview(String reviewId, String bookId){
+        Book b=r.findByIdCustom(bookId);
+        if(b==null){
+            return;
+        }
+        if(b.getReviewIds()==null){
+           b.setReviewIds(new ArrayList<>());
+        }
+        b.getReviewIds().add(reviewId);
         r.save(b);
-        return BookMapper.convertToBook_DTO(b);
-
-
+        System.out.println(b.getReviewIds());
     }
 
-    public List<Book_DTO> getReviewById(String id) {
-        List<Book>pr=r.getAllReviewById(id);
-        return pr.stream().map(BookMapper::convertToBook_DTO)
-                .collect(Collectors.toList());
 
-    }
 }

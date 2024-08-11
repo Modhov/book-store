@@ -26,6 +26,4 @@ public interface BookRepo extends MongoRepository<Book,String> {
     @Query("{'id': ?0}")
     Book findByIdCustom(String id);
 
-    @Query(value = "{}", fields = "{ 'ratings': 1 }")
-    List<Book> getAllReviewById(String id);
 }

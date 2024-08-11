@@ -8,6 +8,7 @@ public class PublicReviewMapper {
         return new PublicReview(
                 pr.getId(),
                 pr.getUserid(),
+                pr.getBookid(),
                 pr.getName(),
                 pr.getStars(),
                 pr.getComment()
@@ -17,6 +18,7 @@ public class PublicReviewMapper {
         return new PublicReview_DTO(
                 pr.getId(),
                 pr.getUserid(),
+                pr.getBookid(),
                 pr.getName(),
                 pr.getStars(),
                 pr.getComment()

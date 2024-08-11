@@ -20,7 +20,8 @@ public class BookMapper {
                 book.getEdition(),
                 book.getIsbn(),
                 book.getSold(),
-                book.getRatings(),
+                book.getAvg(),
+                book.getReviewIds(),
                 book.getImageIds(),
                 book.getLanguage()
 
@@ -42,7 +43,8 @@ public class BookMapper {
                 book_dto.getEdition(),
                 book_dto.getIsbn(),
                 book_dto.getSold(),
-                book_dto.getRatings(),
+                book_dto.getAvg(),
+                book_dto.getReviewIds(),
                 book_dto.getImageIds(),
                 book_dto.getLanguage()
 
