@@ -33,8 +33,10 @@ public class Book {
     private String edition ;
     private String isbn;
     private Integer sold;
+    private String buy;
+    private String read;
     private Double avg;
-    private List<String> reviewIds;
+//    private List<String> reviewIds;
     private List<String> imageIds;
     private String language;
 

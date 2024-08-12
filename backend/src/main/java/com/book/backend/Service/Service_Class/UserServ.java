@@ -77,4 +77,14 @@ public class UserServ implements UserServ_Interface {
         r.save(u);
         return UserMapper.convertToUser_Dto(u);
     }
+
+    public User_DTO acceptRequest(String uid, String acceptId) {
+        User u=r.findById(uid).orElse(null);
+        if(u!=null){
+            u.getFriendrequest().remove(acceptId);
+            u.getFriendlist().add(acceptId);
+            r.save(u);
+        }
+        return UserMapper.convertToUser_Dto(u);
+    }
 }

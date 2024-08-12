@@ -24,7 +24,8 @@ BookServ Bs;
     public PublicReview_DTO addOneReview(PublicReview_DTO pr_dto) {
         PublicReview pr=PublicReviewMapper.convertToPublicReview(pr_dto);
         r.save(pr);
-        Bs.addOneReview(pr.getId(),pr.getBookid(),pr.getStars());
+//        Bs.addOneReview(pr.getId(),pr.getBookid(),pr.getStars());
+ //no need
         return PublicReviewMapper.convertToPublicReview_DTO(pr);
     }
     public List<PublicReview_DTO> getByBookUserId(String id) {
