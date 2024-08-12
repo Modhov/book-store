@@ -30,7 +30,6 @@ public class Book {
     private Double  discount;
     private String binding ;
     private String publisher ;
-    private String edition ;
     private String isbn;
     private Integer sold;
     private String buy;
