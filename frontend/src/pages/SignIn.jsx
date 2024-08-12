@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/signin.css";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../redux/actions/userAction";
@@ -14,7 +14,7 @@ function SignIn() {
   }
   useEffect(() => {
     if (userDet) {
-      window.location.href = "#/home";
+      window.history.back();
     }
   }, [userDet])
   return (
