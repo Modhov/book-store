@@ -2,12 +2,20 @@ import React, { useEffect, useState } from "react";
 import "../styles/home.css";
 import Navbar from "../components/Navbar";
 
+/**
+ * Home component.
+ *
+ * @returns {JSX.Element} The Home component.
+ */
 export default function Home() {
   const [B1, setB1] = useState(0);
   const [B2, setB2] = useState(0);
   const [B3, setB3] = useState(0);
   const [inter, setInter] = useState(null);
 
+  /**
+   * Updates the degrees.
+   */
   function updateDegrees() {
     setB1((prevB1) => {
       if (prevB1 + 1 >= 20) {
@@ -42,8 +50,8 @@ export default function Home() {
     }}>
       <div className="hero-container">
         <div className="hero">
-          <p className="herotext">BookBite</p>
-          <p className="herotext2">Read. Review. Repeat.</p>
+          <p className="herotext">BookHive</p>
+          <p className="herotext2">Explore. Engage. Enjoy.</p>
           <button className="get-started" onClick={() => { window.location.href = "/#/store"; }}>Get started
             <span className="material-symbols-outlined"
               style={{

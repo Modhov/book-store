@@ -29,7 +29,7 @@ public class Book_DTO {
     private String buy;
     private String read;
     private Double avg;
-//    private List<String> reviewIds;
+    private List<String> reviewIds;
     private List<String> imageIds;
     private String language;
 }

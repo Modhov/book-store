@@ -3,7 +3,14 @@ import { useLocation } from 'react-router-dom';
 import { searchBooks, getNextBooks } from '../redux/actions/bookListAction';
 import { useDispatch, useSelector } from 'react-redux';
 import "../styles/navbar.css";
-
+import "../styles/signin.css";
+import SignIn from '../pages/SignIn';
+import SignUp from '../pages/Signup';
+/**
+ * Renders the Navbar component.
+ *
+ * @returns {JSX.Element} The rendered Navbar component.
+ */
 export default function Navbar() {
     const loc = useLocation();
     const selector = useSelector(state => state.user)
@@ -13,6 +20,11 @@ export default function Navbar() {
     const [q, setQ] = React.useState("");
     const dispatch = useDispatch();
 
+    /**
+     * Handles the input change event.
+     * 
+     * @param {object} e - The event object.
+     */
     function handleInput(e) {
         setQ(e.target.value);
     }
@@ -61,7 +73,7 @@ export default function Navbar() {
                         className="material-symbols-outlined"
                         onDoubleClick={() => {
                             if (selector.userType == "admin")
-                                window.location.href = "/#/seller-home";
+                                window.location.href = "/#/add-book";
                         }}
                     >
                         home
@@ -110,20 +122,32 @@ export default function Navbar() {
                 (<div>
                     <button
                         className="secondary-button"
-                        onClick={() => {
-                            window.location.href = "/#/sign-in";
-                        }}
+                        popovertarget="signin"
+                    // onClick={() => {
+                    //     window.location.href = "/#/sign-in";
+                    // }}
                     >
                         Sign In
                     </button>
                     <button
-                        onClick={() => {
-                            window.location.href = "/#/sign-up";
-                        }}
+                        popovertarget="signup"
+                    // onClick={() => {
+                    //     window.location.href = "/#/sign-up";
+                    // }}
                     >
                         Sign Up
                     </button>
                 </div>)
+            }
+            {selector.user == null &&
+                <>
+                    <div id="signin" popover="auto" className='auth-container'>
+                        <SignIn />
+                    </div>
+                    <div id="signup" popover="auto" className='auth-container'>
+                        <SignUp />
+                    </div>
+                </>
             }
         </nav>
     )

@@ -18,6 +18,7 @@ public class UserServ implements UserServ_Interface {
     @Autowired
     private UserRepo r;
 
+    @Override
     public User_DTO addUser(User_DTO user_dto) {
         user_dto.setWishlist(Set.of());
         User user = UserMapper.convertToUser(user_dto);
@@ -27,8 +28,11 @@ public class UserServ implements UserServ_Interface {
             user.setWishlist(Set.of());
         if(user.getFriendlist()==null)
             user.setFriendlist(Set.of());
-        User savedUser = r.save(user);
-        return UserMapper.convertToUser_Dto(savedUser);
+        if(login(user_dto.getUser()," ").equals("User not found") && login(user_dto.getEmail()," ").equals("User not found")) {
+            r.save(user);
+            return UserMapper.convertToUser_Dto(user);
+        }
+        return null;
     }
 
     public List<User_DTO> getAllUser() {
@@ -67,6 +71,7 @@ public class UserServ implements UserServ_Interface {
         }
         return UserMapper.convertToUser_Dto(u);
     }
+
     public User_DTO addRequest(String uid, String newid){
         User u=r.findById(uid).orElse(null);
         if(u==null){
@@ -88,3 +93,5 @@ public class UserServ implements UserServ_Interface {
         return UserMapper.convertToUser_Dto(u);
     }
 }
+
+    

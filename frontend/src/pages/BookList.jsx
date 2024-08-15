@@ -17,9 +17,15 @@ export default function BookList() {
   const [order, setOrder] = React.useState(true);
 
 
+  /**
+   * Handles the genre filter event.
+   * 
+   * @param {Event} e - The event object.
+   * @returns {void}
+   */
   function handleGenreFilter(e) {
     setSelectedGenre(e.target.innerText);
-    dispatch(getNextBooks(sort, e.target.innerText, order, true));
+    dispatch(getNextBooks(sort, e.target.innerText, order, true))
   }
 
   function handleSort(e) {
@@ -27,7 +33,7 @@ export default function BookList() {
       Default: "id",
       "Price (Low to High)": "price",
       "Price (High to Low)": "price",
-      Rating: "rating",
+      Rating: "avg",
       "Title (Ascending)": "name",
       "Title (Descending)": "name",
     };

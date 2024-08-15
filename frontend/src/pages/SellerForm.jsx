@@ -4,6 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import "../styles/sellerform.css";
 
 
+/**
+ * SellerForm component for adding a book.
+ *
+ * @returns {JSX.Element} The rendered SellerForm component.
+ */
 export default function SellerForm() {
   const cur = ""
   const [data, setData] = useState({
@@ -25,6 +30,12 @@ export default function SellerForm() {
   const [imgFiles, setImgFiles] = useState([]);
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.books).genres;
+  /**
+   * Handles the form submission.
+   * 
+   * @param {Event} e - The form submission event.
+   * @returns {void}
+   */
   function handleSubmit(e) {
     e.preventDefault();
     if (data.genre.length === 0) {

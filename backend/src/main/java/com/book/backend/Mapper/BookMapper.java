@@ -22,7 +22,7 @@ public class BookMapper {
                 book.getBuy(),
                 book.getRead(),
                 book.getAvg(),
-//                book.getReviewIds(),
+                book.getReviewIds(),
                 book.getImageIds(),
                 book.getLanguage()
 
@@ -46,7 +46,7 @@ public class BookMapper {
                 book_dto.getBuy(),
                 book_dto.getRead(),
                 book_dto.getAvg(),
-//                book_dto.getReviewIds(),
+                book_dto.getReviewIds(),
                 book_dto.getImageIds(),
                 book_dto.getLanguage()
 

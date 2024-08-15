@@ -49,6 +49,7 @@
 .books {
     height: calc(80% - 16px);
     width: 100%;
+    max-width: 820px;
     display: flex;
     justify-content: space-evenly;
     align-items: end;

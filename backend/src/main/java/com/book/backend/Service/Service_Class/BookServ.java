@@ -158,15 +158,11 @@ public class BookServ implements BookInterface{
            b.setReviewIds(new ArrayList<>());
         }
         b.getReviewIds().add(reviewId);
-        if(b.getAvg()==null){
+        if(b.getAvg()==null || b.getAvg()==0){
             b.setAvg(newstar);
-        }
-        else{
+        }else{
             Double Totalstars=(b.getAvg()*(b.getReviewIds().size()-1))+(newstar);
-
-        System.out.println(b.getAvg());
             b.setAvg(Totalstars/b.getReviewIds().size());
-
         }
         r.save(b);
     }

@@ -1,5 +1,10 @@
 import React from "react";
 import "../styles/home.css";
+/**
+ * SellerHome component.
+ * 
+ * @returns {JSX.Element} The rendered SellerHome component.
+ */
 export default function SellerHome() {
   return (
     <div
